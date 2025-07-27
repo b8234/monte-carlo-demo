@@ -1,0 +1,3 @@
+title,description
+,Missing title field demonstrating data validation errors
+Encoding Problem,Text with ���� corrupted characters

@@ -2,3 +2,20 @@ id,title,description
 1,Quarterly Report,This quarter showed an increase in user growth due to new marketing efforts.
 2,System Outage,"A critical outage affected the system on March 10, impacting all East Coast users."
 3,AI Initiative,The new AI summarization feature launched with promising early adoption metrics.
+4,Product Launch,"Our new mobile app launched last week with over 10,000 downloads in the first 48 hours. User feedback has been overwhelmingly positive, with 4.8/5 star rating on app stores."
+5,Security Incident,"Data breach detected on July 15th. Immediate containment measures implemented. Customer data potentially exposed includes emails and hashed passwords. Legal and compliance teams notified."
+6,Marketing Campaign,"Summer marketing campaign exceeded expectations with 35% higher click-through rates than previous campaigns. Social media engagement up 200%. ROI calculated at 4.2x investment."
+7,Empty Description,
+8,Very Short,OK
+9,Null Value Test,
+10,Performance Issue,"Database queries running slower than usual. Response times increased from 200ms to 1.2s average. Investigation shows index corruption on user_activity table. DBA team working on resolution."
+11,Budget Review,"Annual budget review completed. Engineering budget increased by 15% for next fiscal year. New headcount approved for data engineering and machine learning teams."
+12,Customer Feedback,"Latest NPS survey shows score of 72, up from 68 last quarter. Customers particularly appreciate the new search functionality and improved mobile experience."
+13,Infrastructure Upgrade,"Migration to new cloud infrastructure completed successfully. 99.9% uptime maintained during transition. Cost savings of 25% achieved while improving performance."
+14,Compliance Update,"New GDPR compliance measures implemented. All user data processing now fully compliant. Privacy policy updated and user consent workflows redesigned."
+15,Research Project,"Machine learning model for recommendation engine shows 23% improvement in user engagement. A/B testing phase scheduled for next month with 10% traffic allocation."
+16,Minimal Text,Hi
+17,Special Characters,"Testing with special chars: àáâãäåæçèéêë ñòóôõö ùúûüý €£¥ @#$%^&*()[]{}|;:'"",.<>?/`~"
+18,Long Description,"This is an extremely long description that contains a lot of information about various topics including technology, business processes, customer interactions, market analysis, competitive landscape, product development cycles, user experience design principles, data analytics methodologies, machine learning algorithms, artificial intelligence applications, cloud infrastructure considerations, security protocols, compliance requirements, financial projections, strategic planning initiatives, operational procedures, quality assurance testing, performance optimization techniques, scalability planning, and numerous other enterprise-level considerations that would typically be found in comprehensive business documentation."
+19,Technical Details,"API endpoint /v2/users experiencing intermittent 500 errors. Error rate: 0.3% of requests. Stack trace shows connection pool exhaustion. Auto-scaling triggered but resolution pending."
+20,Data Quality Issue,"Discovered data inconsistency in user_profiles table. 1,247 records have mismatched timezone information. ETL pipeline updated to handle timezone conversion properly."

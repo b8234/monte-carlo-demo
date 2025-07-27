@@ -1,0 +1,11 @@
+id,title,description,priority,department,created_date
+1001,Database Migration,"Legacy database migration to PostgreSQL completed. Performance improvements of 40% observed in query execution times.",high,engineering,2025-01-15
+1002,Customer Churn Analysis,"Analysis shows 12% monthly churn rate. Primary reasons: pricing concerns (45%), feature gaps (30%), support issues (25%).",medium,analytics,2025-01-16
+1003,Security Audit,"Third-party security audit completed. 3 medium-risk vulnerabilities identified and patched. SOC2 compliance maintained.",high,security,2025-01-17
+1004,Mobile App Update,"Version 3.2 released with dark mode and improved accessibility features. App Store rating increased to 4.9 stars.",low,product,2025-01-18
+1005,Sales Training,"Q1 sales training program completed. 95% of sales team certified on new product features. Expected revenue impact: +20%.",medium,sales,2025-01-19
+1006,,,,2025-01-20
+1007,API Rate Limiting,"Implemented rate limiting on public API. 429 responses for requests exceeding 1000/hour. Reduced server load by 35%.",medium,engineering,2025-01-21
+1008,Content Moderation,"AI content moderation system deployed. False positive rate: 2.1%. Manual review queue reduced by 78%.",high,product,2025-01-22
+1009,Data Warehouse Optimization,"Optimized data warehouse queries. ETL pipeline runtime reduced from 4 hours to 45 minutes. Cost savings: $15k/month.",high,data,2025-01-23
+1010,Customer Support Metrics,"Average response time improved to 1.2 hours. Customer satisfaction score: 4.6/5. Support ticket volume up 23%.",medium,support,2025-01-24

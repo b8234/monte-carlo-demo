@@ -1,0 +1,26 @@
+title,description
+URGENT: Critical Error During Migration Process That Exceeded Maximum Title Length Limits,Title too long - indicates potential data loading issues or schema problems.
+Performance Degradation,Application response times increased 340% during peak hours. Database query optimization and load balancing in progress.
+Infrastructure Upgrade,Migration to cloud infrastructure completed successfully with 99.97% uptime maintained and 35% cost reduction achieved.
+,This record has a missing title field which should trigger data quality alerts and validation errors.
+Corrupted Record,���� encoding issues detected ���� special characters causing display problems ����
+Security Incident,Unusual login patterns detected from IP range 185.220.101.x. Account security measures activated and monitoring increased.
+CRITICAL: Repeated Pattern,AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+URGENT: System Capacity,Database storage approaching 85% capacity. Archival process scheduled and additional storage provisioning requested.
+Customer Satisfaction,"NPS score improved to 78 (up from 65), with customers highlighting faster support response times and improved product reliability."
+API Outage,Payment processing API experiencing intermittent 500 errors affecting 12% of transactions. Engineering team investigating connection pool exhaustion.
+Special Chars,Testing with émojis 🚨 and spëcial chäractërs ñoñó
+PENDING: Injection Test,<script>alert('XSS')</script> DROP DATABASE;
+Cost Optimization,"Database query optimization reduced average response time from 1.2s to 180ms, improving user experience significantly."
+Team Performance,"Development team exceeded sprint goals by 15%, delivering all planned features ahead of schedule with zero production bugs."
+Short,Hi
+UPDATE: Quarterly Revenue Report,"Q3 revenue increased by 23% year-over-year, reaching $4.2M with strong performance in enterprise sales and customer retention rates of 94%."
+Integration Failure,Third-party payment gateway timeout errors affecting checkout completion. Fallback payment options activated.
+RESOLVED: Performance Issue,Database slow today might need to check
+Data Quality Alert,"ETL pipeline detected 2,847 records with invalid email formats in customer data. Data validation rules being updated."
+Suspicious Activity,'; DROP TABLE users; SELECT * FROM passwords; --
+RESOLVED: Monitoring Alert,CPU utilization exceeded 90% threshold on production servers for 45 minutes. Auto-scaling policies triggered.
+Data Breach Alert,
+Security Audit Complete,Annual penetration testing completed with no critical vulnerabilities found. All systems updated and security protocols enhanced.
+System Failure,
+JSON Error,"{""incomplete"": ""json object without closing brace"""

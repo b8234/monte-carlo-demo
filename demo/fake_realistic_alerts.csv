@@ -1,0 +1,13 @@
+title,description
+API Outage,Payment processing API experiencing intermittent 500 errors affecting 12% of transactions. Engineering team investigating connection pool exhaustion.
+CRITICAL: Data Quality Alert,"ETL pipeline detected 2,847 records with invalid email formats in customer data. Data validation rules being updated."
+Security Incident,Unusual login patterns detected from IP range 185.220.101.x. Account security measures activated and monitoring increased.
+Performance Degradation,Application response times increased 340% during peak hours. Database query optimization and load balancing in progress.
+URGENT: Compliance Issue,"GDPR audit revealed 15,000 customer records retained beyond policy limits. Automated deletion process initiated."
+URGENT: System Capacity,Database storage approaching 85% capacity. Archival process scheduled and additional storage provisioning requested.
+RESOLVED: Integration Failure,Third-party payment gateway timeout errors affecting checkout completion. Fallback payment options activated.
+RESOLVED: Monitoring Alert,CPU utilization exceeded 90% threshold on production servers for 45 minutes. Auto-scaling policies triggered.
+API Outage,Payment processing API experiencing intermittent 500 errors affecting 12% of transactions. Engineering team investigating connection pool exhaustion.
+Data Quality Alert,"ETL pipeline detected 2,847 records with invalid email formats in customer data. Data validation rules being updated."
+CRITICAL: Security Incident,Unusual login patterns detected from IP range 185.220.101.x. Account security measures activated and monitoring increased.
+Performance Degradation,Application response times increased 340% during peak hours. Database query optimization and load balancing in progress.

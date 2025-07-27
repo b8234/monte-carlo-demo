@@ -4,37 +4,30 @@ import logging
 from datetime import datetime
 import duckdb
 from openai import OpenAI
-from dotenv import load_dotenv
 from pathlib import Path
+import sys
 
-logging.basicConfig(level=logging.INFO)
+# Add parent directory to path for config import
+sys.path.append(str(Path(__file__).parent.parent))
+from config import config
 
-# ----------------------------
-# 🌍 ENV LOADING AND VALIDATION
-# ----------------------------
-def refresh_env():
-    env_path = Path(__file__).resolve().parents[1] / ".env"
-    load_dotenv(dotenv_path=env_path)
+logging.basicConfig(level=getattr(logging, config.log_level.upper(), logging.INFO))
 
-def load_and_validate_env_vars():
-    """Loads and validates critical environment variables."""
-    refresh_env()
-    required_vars = ["OPENAI_ORGANIZATION", "OPENAI_PROJECT", "OPENAI_API_KEY"]
-    env_vars = {var: os.getenv(var) for var in required_vars}
-    missing = [k for k, v in env_vars.items() if not v]
+def setup_openai_client():
+    """Initialize the OpenAI client using centralized config."""
+    try:
+        client = OpenAI(
+            organization=config.openai_organization,
+            project=config.openai_project,
+            api_key=config.openai_api_key
+        )
+        return client
+    except Exception as e:
+        logging.error(f"Error initializing OpenAI client: {e}")
+        raise
 
-    if missing:
-        raise EnvironmentError(f"Missing required environment variables: {', '.join(missing)}")
-
-    return env_vars
-
-env = load_and_validate_env_vars()
-
-client = OpenAI(
-    organization=env["OPENAI_ORGANIZATION"],
-    project=env["OPENAI_PROJECT"],
-    api_key=env["OPENAI_API_KEY"]
-)
+# Initialize OpenAI client
+client = setup_openai_client()
 
 # ----------------------------
 # 🧠 CONSTANTS
@@ -102,7 +95,7 @@ def generate_summary(text):
         return f"ERROR: {e}"
 
 def run_ai_quality_checks():
-    con = duckdb.connect("/Users/BryantItonyo1/Desktop/monte-carlo-demo/monte-carlo.duckdb")
+    con = duckdb.connect(config.duckdb_path)
     try:
         rows = con.execute("SELECT id, title, description FROM summarize_model").fetchall()
     except Exception as e:

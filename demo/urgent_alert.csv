@@ -1,0 +1,3 @@
+title,description
+CRITICAL: System Down,Production database unavailable affecting all users. Emergency response team activated.
+Performance Alert,API response times exceeded 10 seconds. Load balancer investigation in progress.

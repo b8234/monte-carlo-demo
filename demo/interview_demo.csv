@@ -1,0 +1,7 @@
+title,description
+Interview Demo,This record was created during the live interview demonstration to show real-time data processing capabilities.
+Data Pipeline Success,ETL pipeline completed successfully processing 1.2 million records with zero errors and 99.9% accuracy.
+,Missing title field to demonstrate data quality issue detection
+Corrupted Encoding,This text contains ���� corrupted characters to test encoding issue detection
+SQL Injection,'; DROP TABLE users; --
+System Performance,Response times improved by 45% after database optimization and index restructuring implementation.

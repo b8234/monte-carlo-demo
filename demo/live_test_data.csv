@@ -1,0 +1,5 @@
+title,description
+Live Demo Test,This is a test record added during the live demo to show real-time data ingestion capabilities.
+Data Quality Issue,
+Security Alert,Suspicious activity detected in user authentication logs. Multiple failed login attempts from foreign IP addresses.
+Performance Problem,Database response times have increased by 300% in the last hour affecting all customer operations.

@@ -1,0 +1,11 @@
+id,title,description
+21,Server Maintenance,"Scheduled maintenance window completed successfully. All systems restored to full functionality. Zero customer impact achieved."
+22,Feature Flag Rollout,"New checkout flow feature flag enabled for 50% of users. Conversion rate improved by 8.5%. Planning full rollout next week."
+23,"Bad Data, Row","This row contains actual NULL values and weird formatting to test edge cases"
+24,International Expansion,"Launched service in 5 new European markets. Localization complete for French, German, Spanish, Italian, and Dutch languages."
+25,Partnership Announcement,"Strategic partnership with TechCorp announced. Integration timeline: Q4 2025. Expected revenue impact: $2.3M annually."
+26,,
+27,UX Research,"User journey analysis revealed 3 major pain points in onboarding flow. Redesign prioritized for next sprint. Expected conversion improvement: 15%."
+28,Competitor Analysis,"Market research shows we maintain 34% market share in core segment. Main competitor gaining ground in mobile space."
+29,Team Expansion,"Engineering team grew by 12 people this quarter. New hires in machine learning, DevOps, and frontend development."
+30,Revenue Milestone,"Crossed $10M ARR milestone this month. Growth rate maintained at 15% month-over-month. Celebrating with team event."

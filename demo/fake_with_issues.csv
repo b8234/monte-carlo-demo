@@ -1,0 +1,21 @@
+title,description
+,This record has a missing title field which should trigger data quality alerts and validation errors.
+Data Breach Alert,
+CRITICAL: System Failure,
+Corrupted Record,���� encoding issues detected ���� special characters causing display problems ����
+Suspicious Activity,'; DROP TABLE users; SELECT * FROM passwords; --
+Short,Hi
+Performance Issue,Database slow today might need to check
+Critical Error During Migration Process That Exceeded Maximum Title Length Limits,Title too long - indicates potential data loading issues or schema problems.
+JSON Error,"{""incomplete"": ""json object without closing brace"""
+Repeated Pattern,AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+URGENT: Special Chars,Testing with émojis 🚨 and spëcial chäractërs ñoñó
+URGENT: Injection Test,<script>alert('XSS')</script> DROP DATABASE;
+,This record has a missing title field which should trigger data quality alerts and validation errors.
+RESOLVED: Data Breach Alert,
+System Failure,
+CRITICAL: Corrupted Record,���� encoding issues detected ���� special characters causing display problems ����
+CRITICAL: Suspicious Activity,'; DROP TABLE users; SELECT * FROM passwords; --
+Short,Hi
+RESOLVED: Performance Issue,Database slow today might need to check
+URGENT: Critical Error During Migration Process That Exceeded Maximum Title Length Limits,Title too long - indicates potential data loading issues or schema problems.
