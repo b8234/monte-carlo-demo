@@ -1,0 +1,21 @@
+name: 'dbt_project'       # Must be lowercase and match folder name
+version: '1.0.0'          # Can be any semver
+config-version: 2         # Always use version 2
+
+profile: 'dbt_project'    # MUST match the profile name in ~/.dbt/profiles.yml
+
+# Folder paths relative to this dbt_project.yml file
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  dbt_project:
+    +materialized: table   # or 'view' if preferred; 'table' is better for local dev

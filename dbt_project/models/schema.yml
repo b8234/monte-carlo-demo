@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: summarize_model
+    description: "Cleaned and enriched data for LLM summarization"
+    columns:
+      - name: id
+        tests:
+          - not_null
+          - unique
+      - name: description
+        tests:
+          - not_null
