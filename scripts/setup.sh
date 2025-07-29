@@ -41,7 +41,7 @@ python3 load_csv.py
 
 # Generate additional sample data for testing
 echo "🎲 Generating sample data with quality issues..."
-python3 generate_sample_data.py
+python3 scripts/generate_sample_data.py
 
 # Reload data with new samples
 echo "🔄 Reloading all data including generated samples..."
@@ -98,9 +98,69 @@ echo "🎉 Setup complete!"
 echo ""
 echo "Next steps:"
 echo "1. Edit .env file with your OpenAI credentials"
-echo "2. Run the dashboard: echo "🚀 Starting the dashboard..."
-echo "Run: python -m streamlit run dashboard.py"
-echo "Dashboard will be available at: http://localhost:8501""
+echo "2. Run the dashboard:"
+echo "   python -m streamlit run dashboard.py"
+echo "   Dashboard will be available at: http://localhost:8501"
 echo "3. Check observability: python observability/alerts.py"
 echo ""
 echo "📚 See README.md for detailed usage instructions"
+echo ""
+echo "🚀 Quick Commands:"
+echo "   • Run AI analysis: python ai_layer/summarize.py"
+echo "   • Start dashboard: python -m streamlit run dashboard.py"
+echo "   • Generate demo data: python scripts/generate_fake_data.py"
+echo "   • Live demo: python interview_demo.py"
+
+echo ""
+echo "🎯 Would you like to start the system now? (y/n)"
+read -r start_system
+
+if [ "$start_system" = "y" ] || [ "$start_system" = "Y" ]; then
+    echo ""
+    echo "🔍 Choose an option:"
+    echo "1) Start Dashboard (Streamlit)"
+    echo "2) Run AI Analysis"
+    echo "3) Run Interview Demo"
+    echo "4) Generate New Sample Data"
+    echo "5) Check System Status"
+    echo "Enter your choice (1-5):"
+    read -r choice
+    
+    case $choice in
+        1)
+            echo "🚀 Starting dashboard..."
+            cd /workspaces/monte-carlo-demo
+            python -m streamlit run dashboard.py
+            ;;
+        2)
+            echo "🤖 Running AI analysis..."
+            cd /workspaces/monte-carlo-demo
+            python ai_layer/summarize.py
+            ;;
+        3)
+            echo "🎬 Starting interview demo..."
+            cd /workspaces/monte-carlo-demo
+            python interview_demo.py
+            ;;
+        4)
+            echo "🎲 Generating new sample data..."
+            cd /workspaces/monte-carlo-demo
+            python scripts/generate_fake_data.py
+            echo "✅ New data generated! Run option 2 to analyze it."
+            ;;
+        5)
+            echo "🔍 Checking system status..."
+            cd /workspaces/monte-carlo-demo
+            echo "Configuration:"
+            python config.py
+            echo ""
+            echo "Database tables:"
+            python check_tables.py || echo "ℹ️  Database is in use (this is normal if dashboard is running)"
+            ;;
+        *)
+            echo "ℹ️  Setup complete. Use the commands above to operate your system."
+            ;;
+    esac
+else
+    echo "ℹ️  Setup complete. Use the commands above to operate your system."
+fi

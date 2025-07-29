@@ -1,0 +1,9 @@
+title,description
+Critical Database Alert,Production database response times increased 400% affecting all customer operations and requiring immediate investigation
+Revenue Milestone Achievement,Q3 revenue exceeded target by 28% reaching $4.2M with customer satisfaction scores at all-time high of 94%
+,Missing title field to demonstrate data quality validation and error detection capabilities
+Security Breach Investigation,Unauthorized access detected from IP 185.220.101.42 with multiple failed authentication attempts requiring emergency response
+Data Quality Issue,
+Performance Optimization Success,Query optimization reduced average response time from 2.1 seconds to 180ms improving user experience significantly
+Corrupted Data Record,This text contains ���� encoding issues that should trigger quality alerts ����
+SQL Injection Attempt,'; DROP TABLE users; SELECT * FROM passwords; --

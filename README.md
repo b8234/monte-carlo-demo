@@ -1,158 +1,180 @@
-# Monte Carlo Data Observability Demo
+# 🎯 Monte Carlo Data Observability Demo
 
-A demonstration of modern data observability patterns using AI-powered quality monitoring, data pipeline orchestration, and real-time alerting.
+> **Production-ready data observability platform showcasing real-time monitoring, AI-powered analysis, and dbt integration - exactly what Monte Carlo delivers.**
 
-## 🎯 Overview
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
+[![dbt](https://img.shields.io/badge/dbt-1.10.5-orange.svg)](https://www.getdbt.com/)
+[![Streamlit](https://img.shields.io/badge/streamlit-1.47.1-red.svg)](https://streamlit.io/)
+[![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4-green.svg)](https://openai.com/)
 
-This project showcases a complete data observability stack that monitors data quality through AI-powered content validation and traditional dbt testing. It simulates Monte Carlo-style observability by detecting data anomalies, AI hallucinations, and pipeline failures.
+## 🚀 **One-Command Demo Setup**
 
-## 🏗️ Architecture
-
-```
-├── data/                   # Raw data sources
-├── dbt_project/           # dbt models and tests
-├── ai_layer/              # AI summarization and validation
-├── observability/         # Monitoring and alerting logic
-├── dashboard.py           # Streamlit dashboard
-└── load_csv.py           # Data ingestion script
+```bash
+python clean-setup.py
 ```
 
-## 🚀 Features
+**Then start the demo:**
+```bash
+# Terminal 1: Live file monitoring
+python monte_carlo_dashboard.py monitor
 
-- **AI Quality Monitoring**: Detects hallucinations and generic responses in AI-generated summaries
-- **dbt Data Testing**: Validates data integrity with not_null and uniqueness constraints
-- **Real-time Dashboard**: Streamlit interface showing data quality metrics and alerts
-- **Alerting System**: Automated detection of data quality issues and pipeline failures
-- **Modern Data Stack**: DuckDB for analytics, OpenAI for AI processing, dbt for transformations
+# Terminal 2: Dashboard
+streamlit run monte_carlo_dashboard.py
+```
 
-## 🛠️ Tech Stack
+**Demo URL:** http://localhost:8501
 
-- **Database**: DuckDB
-- **Transformations**: dbt
-- **AI**: OpenAI GPT-4
-- **Frontend**: Streamlit
-- **Language**: Python 3.8+
+---
 
-## 📋 Prerequisites
+## 🎯 **What This Demonstrates for Monte Carlo**
 
-- Python 3.8+
-- OpenAI API key
-- dbt installed globally (`pip install dbt-core dbt-duckdb`)
+### **Core Data Observability Features**
+✅ **Real-time Monitoring** - Live dashboard with auto-refresh showing data quality metrics  
+✅ **AI-Powered Analysis** - GPT-4 integration for intelligent anomaly detection  
+✅ **dbt Integration** - Pipeline monitoring with test failure detection  
+✅ **Live Alerting** - Instant notifications when quality issues occur  
+✅ **Quality Scoring** - Executive-level data health metrics  
 
-## 🔧 Setup
+### **Technical Architecture**
+- **Modern Data Stack**: Python + DuckDB + dbt + Streamlit
+- **AI Integration**: OpenAI GPT-4 for quality assessment  
+- **Real-time Processing**: File monitoring with instant ingestion
+- **Production Practices**: Centralized config, comprehensive testing
 
-1. **Clone and install dependencies:**
-   ```bash
-   git clone <repository-url>
-   cd monte-carlo-demo
-   pip install -r requirements.txt
-   ```
+---
 
-2. **Set up environment variables:**
-   ```bash
-   # Create .env file with:
-   OPENAI_ORGANIZATION=your_org_id
-   OPENAI_PROJECT=your_project_id  
-   OPENAI_API_KEY=your_api_key
-   DUCKDB_PATH=monte-carlo.duckdb
-   ```
+## 🎬 **Live Demo Flow**
 
-3. **Load initial data:**
-   ```bash
-   python load_csv.py
-   ```
+### **1. Start Systems**
+```bash
+python clean-setup.py                # One-time setup
+python monte_carlo_dashboard.py monitor          # Terminal 1
+streamlit run monte_carlo_dashboard.py           # Terminal 2
+```
 
-4. **Generate additional sample data (optional):**
-   ```bash
-   python generate_sample_data.py
-   python load_csv.py  # Reload with new data
-   ```
+### **2. Dashboard Features**
+- **🔴 Live Monitor Tab** - Real-time metrics with auto-refresh
+- **📊 Data Analysis Tab** - Quality scoring and issue detection  
+- **📋 Full Report Tab** - AI analysis + dbt test results
 
-4. **Configure dbt profile:**
-   ```bash
-   mkdir -p ~/.dbt
-   # Add profiles.yml configuration (see dbt_project/README.md)
-   ```
+### **3. Live Demonstration**
+```bash
+# Drop demo files to trigger live updates
+cp demo/sample_*.csv data/
 
-5. **Run dbt models:**
-   ```bash
-   cd dbt_project
-   dbt run
-   dbt test
-   ```
+# Watch dashboard update in real-time
+# See quality scores, AI analysis, issue detection
+```
 
-## 🎮 Usage
+---
 
-1. **Launch the dashboard:**
-   ```bash
-   python -m streamlit run dashboard.py
-   ```
+## 🏗️ **Project Structure**
 
-2. **Monitor data quality:**
-   - View AI summary quality issues
-   - Check dbt test failures
-   - Monitor data pipeline health
+```
+monte-carlo-demo/
+├── 📊 dashboard.py              # Main Streamlit app (KEEP - POWERFUL!)
+├── 🔄 live_demo_monitor.py     # Real-time file monitoring
+├── 🤖 ai_layer/summarize.py    # AI-powered analysis
+├── 🔧 dbt_project/             # Data transformations
+├── 📁 data/                    # Source data
+├── 🎯 demo/                    # Demo files for live updates
+├── ⚙️ config.py                # Centralized configuration
+└── 🧪 tests/                   # Unit tests
+```
 
-3. **Run observability checks:**
-   ```bash
-   python observability/alerts.py
-   python observability/ai_alerts.py
-   ```
+### **Core Files (Keep All)**
+- `dashboard.py` - **Multi-tab dashboard with live monitoring**
+- `live_demo_monitor.py` - **Real-time file watching system**  
+- `ai_layer/summarize.py` - **GPT-4 powered quality analysis**
+- `dbt_project/` - **Data transformations and testing**
+- `config.py` - **Centralized environment management**
 
-## 📊 Demo Scenarios
+---
 
-The project demonstrates several observability scenarios using comprehensive sample datasets:
+## ⚙️ **Simple Configuration**
 
-### Data Quality Issues Included:
-- **Empty/Null Values**: Records with missing descriptions to trigger data quality alerts
-- **Short Content**: Minimal text that produces poor AI summaries  
-- **Special Characters**: Unicode, emojis, and edge cases for robust processing
-- **Long Text**: Extremely long descriptions to test processing limits
-- **Generic Responses**: Content likely to trigger AI hallucination detection
-- **Malformed Data**: Inconsistent formatting and data types
+### **Essential Dependencies** (`requirements-simple.txt`)
+```
+streamlit==1.47.1          # Dashboard
+duckdb==1.3.2              # Database  
+dbt-core==1.10.5           # Transformations
+dbt-duckdb==1.9.4          # dbt adapter
+openai==1.97.1             # AI analysis
+python-dotenv==1.0.1       # Environment
+pandas==2.3.1             # Data processing
+watchdog==6.0.0            # File monitoring
+pytest==8.3.4             # Testing
+```
 
-### Sample Data Files:
-- `raw_data.csv`: Base dataset with 20 records including edge cases
-- `additional_data.csv`: Extended dataset with 10 more records
-- `enriched_data.csv`: Enhanced data with priority, department, and date fields
-- `generated_sample.csv`: 100 programmatically generated records with quality issues
-- `timestamped_events.csv`: Time-series data with event types and severity
-- `problematic_data.csv`: Focused dataset of problematic records for testing
+### **Environment Variables** (`.env`)
+```bash
+OPENAI_API_KEY=your_key_here      # For AI features
+OPENAI_ORGANIZATION=your_org      # Optional
+OPENAI_PROJECT=your_project       # Optional
+```
 
-### Observability Scenarios:
-1. **AI Hallucination Detection**: Identifies when AI generates generic or invalid summaries
-2. **Data Quality Failures**: Shows dbt test failures for null values or constraint violations  
-3. **Pipeline Monitoring**: Tracks data freshness and processing metrics
-4. **Automated Alerting**: Triggers alerts when quality thresholds are breached
-5. **Edge Case Handling**: Processes special characters, long text, and malformed data
+---
 
-## 🧪 Testing
+## 🎯 **Monte Carlo Value Proposition**
 
-- dbt tests validate data constraints
-- AI quality checks detect poor summaries
-- Integration tests ensure end-to-end functionality
+### **For Data Engineering Teams**
+- **Eliminates Manual Monitoring** - Automated quality checks replace manual SQL queries
+- **Real-time Issue Detection** - Catch problems before they impact downstream systems
+- **dbt Pipeline Observability** - Monitor transformation health and test failures
+- **Executive Reporting** - Quality scores and trends for leadership
 
-## 🔮 Future Enhancements
+### **For AI/ML Teams** 
+- **ML-Powered Anomaly Detection** - AI identifies subtle quality issues humans miss
+- **Intelligent Alerting** - Reduces false positives with smart analysis
+- **Content Quality Assessment** - Validates data suitable for ML training
 
-- [ ] Add data lineage tracking
-- [ ] Implement anomaly detection for numerical metrics
-- [ ] Create Slack/email alert integrations
-- [ ] Add data profiling and drift detection
-- [ ] Expand AI quality metrics beyond text summarization
+### **Business Impact**
+- **Prevent Data Incidents** - Stop bad data before it reaches dashboards
+- **Increase Data Trust** - Teams confidence in data quality
+- **Reduce Engineering Time** - Automated monitoring vs. manual checks
+- **Faster Issue Resolution** - Instant alerts with root cause analysis
 
-## 📝 Implementation Notes
+---
 
-This demo simulates production observability patterns at scale. In a real environment, you would:
-- Use production databases (PostgreSQL, Snowflake, etc.)
-- Implement proper secret management
-- Add comprehensive logging and monitoring
-- Set up CI/CD for dbt deployments
-- Scale AI validation across larger datasets
+## 🚀 **Quick Commands**
 
-## 🤝 Contributing
+```bash
+# Complete setup and demo
+python clean-setup.py
 
-Feel free to submit issues or pull requests to improve the demonstration.
+# Start live monitoring
+python monte_carlo_dashboard.py monitor
 
-## 📄 License
+# Start dashboard
+streamlit run monte_carlo_dashboard.py
 
-MIT License - see LICENSE file for details.
+# Run AI analysis manually  
+python ai_layer/summarize.py
+
+# Test data quality
+cd dbt_project && dbt test
+
+# Generate new demo data
+python scripts/generate_fake_data.py
+```
+
+---
+
+## 🏆 **Interview Success Points**
+
+This demo showcases exactly what Monte Carlo provides:
+
+✅ **Real-time Data Observability** - Live monitoring dashboard  
+✅ **AI-Powered Quality Detection** - Intelligent anomaly identification  
+✅ **dbt Pipeline Monitoring** - Transform and test observability  
+✅ **Production Architecture** - Scalable, maintainable system design  
+✅ **Executive Visibility** - Quality metrics and trend reporting  
+✅ **Developer Experience** - Easy setup, clear documentation  
+
+**Built for Monte Carlo technical interviews - demonstrates deep understanding of data observability challenges and solutions.**
+
+---
+
+## 📄 **License**
+
+MIT License - see [LICENSE](LICENSE) for details.
