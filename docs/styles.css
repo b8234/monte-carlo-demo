@@ -633,6 +633,90 @@ a:hover {
   margin-bottom: 1rem;
 }
 
+/* Codespace Styling */
+.codespace-option {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.codespace-info h4 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.codespace-benefits {
+  margin: 1.5rem 0;
+}
+
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem;
+  background: var(--gray-50);
+  border-radius: 8px;
+  border-left: 3px solid var(--primary);
+}
+
+.benefit-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.codespace-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary));
+  border-radius: 12px;
+  color: white;
+}
+
+.codespace-btn {
+  background: white !important;
+  color: var(--primary) !important;
+  border: none !important;
+  padding: 1rem 2rem !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 1rem !important;
+  transform: scale(1);
+  transition: all 0.3s ease;
+}
+
+.codespace-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.codespace-instructions {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.codespace-note {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1.5rem;
+}
+
+.codespace-note p {
+  margin: 0;
+  color: var(--gray-700);
+}
+
 /* Code Blocks */
 .code-block {
   background: var(--gray-900);
@@ -982,6 +1066,15 @@ a:hover {
   }
   
   .demo-content {
+    padding: 1.5rem;
+  }
+  
+  .codespace-option {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .codespace-action {
     padding: 1.5rem;
   }
 }

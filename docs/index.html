@@ -246,12 +246,13 @@
             <div class="section-header">
                 <h2 class="section-title">Live Demonstration</h2>
                 <p class="section-subtitle">
-                    Experience the platform with realistic enterprise data scenarios
+                    Experience the platform with realistic enterprise data scenarios - run locally or in the cloud
                 </p>
             </div>
             <div class="demo-container">
                 <div class="demo-tabs">
-                    <button class="demo-tab active" data-tab="setup">Quick Setup</button>
+                    <button class="demo-tab active" data-tab="setup">Local Setup</button>
+                    <button class="demo-tab" data-tab="codespace">GitHub Codespace</button>
                     <button class="demo-tab" data-tab="dashboard">Dashboard</button>
                     <button class="demo-tab" data-tab="monitoring">File Monitoring</button>
                     <button class="demo-tab" data-tab="integration">SDK Integration</button>
@@ -259,7 +260,7 @@
                 
                 <div class="demo-content">
                     <div class="demo-panel active" id="setup">
-                        <h3>One-Command Setup</h3>
+                        <h3>Local Installation</h3>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-title">Terminal</span>
@@ -277,6 +278,56 @@ cd monte-carlo-demo
                             <li>Loads sample enterprise data</li>
                             <li>Starts dashboard at <code>localhost:8501</code></li>
                         </ul>
+                    </div>
+                    
+                    <div class="demo-panel" id="codespace">
+                        <h3>GitHub Codespace Setup</h3>
+                        <div class="codespace-option">
+                            <div class="codespace-info">
+                                <h4>🚀 One-Click Cloud Development</h4>
+                                <p>Run the entire Monte Carlo demo in a fully configured cloud environment with zero local setup required.</p>
+                                <div class="codespace-benefits">
+                                    <div class="benefit">
+                                        <span class="benefit-icon">⚡</span>
+                                        <span>Instant setup - no dependencies to install</span>
+                                    </div>
+                                    <div class="benefit">
+                                        <span class="benefit-icon">🔧</span>
+                                        <span>Pre-configured environment with all tools</span>
+                                    </div>
+                                    <div class="benefit">
+                                        <span class="benefit-icon">🌐</span>
+                                        <span>Access from any device with a browser</span>
+                                    </div>
+                                    <div class="benefit">
+                                        <span class="benefit-icon">💾</span>
+                                        <span>Free tier available (60 hours/month)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="codespace-action">
+                                <a href="https://github.com/b8234/monte-carlo-demo" class="btn btn-primary codespace-btn" target="_blank">
+                                    <span class="btn-icon">🛠️</span>
+                                    Open in GitHub Codespace
+                                </a>
+                                <p class="codespace-instructions">
+                                    Click the green <strong>"Code"</strong> button → <strong>"Codespaces"</strong> tab → <strong>"Create codespace on main"</strong>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-title">Once Codespace Loads</span>
+                                <button class="copy-btn" data-copy="./setup.sh">📋 Copy</button>
+                            </div>
+                            <pre><code># In the Codespace terminal, simply run:
+./setup.sh
+
+# The dashboard will open automatically in the browser</code></pre>
+                        </div>
+                        <div class="codespace-note">
+                            <p><strong>💡 Pro Tip:</strong> Codespaces include VS Code in the browser with all extensions pre-installed, making it perfect for exploring the codebase and understanding the implementation.</p>
+                        </div>
                     </div>
                     
                     <div class="demo-panel" id="dashboard">
