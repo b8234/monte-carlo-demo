@@ -87,7 +87,7 @@ def demo_production_readiness():
     print("✅ Dashboard integration working")
     
     print("\nProduction Migration:")
-    print("📋 1. pip install pycarlo")
+    print("📋 1. pip install pycarlo==0.10.51")
     print("📋 2. montecarlo configure")
     print("📋 3. Set demo_mode=False")
     print("📋 4. All existing code works!")

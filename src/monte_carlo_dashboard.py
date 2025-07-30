@@ -659,7 +659,7 @@ export MONTE_CARLO_API_TOKEN="your-api-token"
 export MONTE_CARLO_DEMO_MODE=false
 
 # Or install pycarlo:
-pip install pycarlo
+pip install pycarlo==0.10.51
         """)
 
 def render_sdk_overview(client):
@@ -1123,7 +1123,7 @@ def quality_gate_check():
         
         1. **Install pycarlo SDK**
            ```bash
-           pip install pycarlo>=0.5.0
+           pip install pycarlo==0.10.51
            ```
         
         2. **Configure Credentials**

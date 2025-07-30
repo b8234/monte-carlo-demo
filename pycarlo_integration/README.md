@@ -6,7 +6,7 @@ This guide shows how to use the official Monte Carlo Python SDK (`pycarlo`) with
 
 ```bash
 # Install the official Monte Carlo Python SDK
-pip install pycarlo
+pip install pycarlo==0.10.51
 
 # Configure credentials (creates ~/.mcd/profiles.ini)
 montecarlo configure
@@ -281,7 +281,7 @@ Our Monte Carlo integration demonstrates these patterns in:
 
 ## Production Checklist
 
-- [ ] Install pycarlo: `pip install pycarlo`
+- [ ] Install pycarlo: `pip install pycarlo==0.10.51`
 - [ ] Configure credentials: `montecarlo configure` or set environment variables
 - [ ] Test connection with basic query
 - [ ] Handle `GqlError` exceptions appropriately
@@ -292,7 +292,7 @@ Our Monte Carlo integration demonstrates these patterns in:
 
 Switch from demo mode to production mode by:
 
-1. Installing pycarlo: `pip install pycarlo>=0.5.0`
+1. Installing pycarlo: `pip install pycarlo==0.10.51`
 2. Setting up credentials via CLI or environment variables
 3. Changing client initialization to use `ProductionMonteCarloClient`
 4. All existing code patterns remain the same!
