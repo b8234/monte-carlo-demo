@@ -75,6 +75,8 @@ class DataManager:
     
     def __init__(self, db_path: str):
         self.db_path = db_path
+        # Ensure the database directory exists
+        os.makedirs(os.path.dirname(self.db_path), exist_ok=True)
         
     def get_connection(self):
         """Get database connection."""
