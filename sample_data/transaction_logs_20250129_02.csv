@@ -1,0 +1,6 @@
+title,description
+Data Breach Incident,Unauthorized access detected in customer database on July 25th. Approximately 1247 user records potentially compromised including email addresses and encrypted passwords. Security team has contained the breach and is implementing additional safeguards.
+System Outage,Primary database server failed at 14:23 UTC causing complete service interruption for 47 minutes. Root cause identified as hardware failure in RAID controller. Backup systems activated and service restored.
+Compliance Violation,GDPR audit revealed improper data retention practices in legacy systems. Personal data from 2019 still stored without user consent. Immediate deletion initiated and processes updated.
+Financial Loss,Trading algorithm malfunction resulted in $2.3M loss during market volatility on Friday. Algorithm has been disabled pending full investigation.
+Customer Complaint,Major client threatening contract termination due to repeated service failures. Account management team scheduling emergency meeting.

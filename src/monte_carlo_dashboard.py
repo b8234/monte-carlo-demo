@@ -31,10 +31,14 @@ class Config:
         if env_file:
             load_dotenv(env_file)
         else:
-            project_root = Path(__file__).parent
+            # Look for .env file in project root (parent of src directory)
+            project_root = Path(__file__).parent.parent
             env_path = project_root / ".env"
             if env_path.exists():
                 load_dotenv(env_path)
+            else:
+                # Fallback: try current directory
+                load_dotenv()
     
     @property
     def openai_api_key(self) -> str:
@@ -53,7 +57,7 @@ class Config:
     
     @property
     def duckdb_path(self) -> str:
-        return os.getenv("DUCKDB_PATH", "monte-carlo.duckdb")
+        return os.getenv("DUCKDB_PATH", "database/monte-carlo.duckdb")
     
     @property
     def log_level(self) -> str:
@@ -95,7 +99,7 @@ class DataManager:
                 con.execute(f"DROP TABLE IF EXISTS {table_name}")
                 con.register(f"{table_name}_df", df)
                 
-                if table_name == "raw_data":
+                if table_name == "product_operations_incidents_2025":
                     # Create enhanced table with calculated fields
                     con.execute(f"""
                         CREATE TABLE {table_name} AS 
@@ -111,7 +115,7 @@ class DataManager:
                             title,
                             description,
                             description_length
-                        FROM raw_data
+                        FROM product_operations_incidents_2025
                     """)
                 else:
                     con.execute(f"CREATE TABLE {table_name} AS SELECT * FROM {table_name}_df")
@@ -131,10 +135,10 @@ class DataManager:
             file_name = Path(file_path).stem
             
             # For demo files, append to existing tables
-            if "raw_data" in file_name.lower() or "demo" in file_name.lower():
+            if "product_operations" in file_name.lower() or "demo" in file_name.lower():
                 # Get current max ID
                 try:
-                    max_id = con.execute("SELECT MAX(id) FROM raw_data").fetchone()[0] or 0
+                    max_id = con.execute("SELECT MAX(id) FROM product_operations_incidents_2025").fetchone()[0] or 0
                 except:
                     max_id = 0
                 
@@ -144,14 +148,14 @@ class DataManager:
                 
                 # Insert new data
                 con.register("new_data", df)
-                con.execute("INSERT INTO raw_data SELECT * FROM new_data")
+                con.execute("INSERT INTO product_operations_incidents_2025 SELECT * FROM new_data")
                 con.execute("""
                     INSERT INTO summarize_model 
                     SELECT id, title, description, description_length 
                     FROM new_data
                 """)
                 
-                print(f"✅ Added {len(df)} new records to raw_data table")
+                print(f"✅ Added {len(df)} new records to product_operations_incidents_2025 table")
             
             con.close()
             
@@ -279,7 +283,7 @@ class AIAnalyzer:
 class LiveMonitor:
     """Handles real-time file monitoring."""
     
-    def __init__(self, data_manager: DataManager, watch_dir: str = "demo"):
+    def __init__(self, data_manager: DataManager, watch_dir: str = "sample_data"):
         self.data_manager = data_manager
         self.watch_dir = watch_dir
         self.observer = None
@@ -329,7 +333,7 @@ def setup_dashboard():
     st.title("🎯 Monte Carlo Data Observability Demo")
     st.caption(f"All-in-One Dashboard | Last updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
-def show_live_monitoring(data_manager: DataManager, live_monitor: LiveMonitor):
+def show_live_monitoring(data_manager: DataManager, live_monitor: LiveMonitor, ai_analyzer: AIAnalyzer):
     """Display live monitoring tab."""
     st.subheader("🔴 Live Demo Monitor")
     
@@ -343,12 +347,10 @@ def show_live_monitoring(data_manager: DataManager, live_monitor: LiveMonitor):
         if st.button("📊 Refresh Now"):
             st.rerun()
     
-    with col3:
-        if st.button("🎬 Start Monitor"):
-            live_monitor.start_monitoring()
-            st.success("Monitor started! Drop CSV files in demo/ folder")
-    
-    # Live statistics
+        with col3:
+            if st.button("🎬 Start Monitor"):
+                live_monitor.start_monitoring()
+                st.success("Monitor started! Drop CSV files in sample_data/ folder")    # Live statistics
     stats = data_manager.get_live_stats()
     if stats:
         metric_cols = st.columns(5)
@@ -364,8 +366,16 @@ def show_live_monitoring(data_manager: DataManager, live_monitor: LiveMonitor):
         with metric_cols[4]:
             st.metric("🕐 Last Update", datetime.now().strftime("%H:%M:%S"))
     
-    # Recent records
-    st.subheader("📋 Recent Records")
+    # Recent records with enhanced description analysis
+    st.subheader("📋 Recent Records & Description Quality")
+    
+    # Description analysis options
+    col1, col2 = st.columns([3, 1])
+    with col1:
+        show_descriptions = st.checkbox("📝 Show Full Descriptions", value=False)
+    with col2:
+        analyze_live = st.checkbox("🤖 Live AI Analysis", value=False)
+    
     try:
         con = data_manager.get_connection()
         recent_data = con.execute("""
@@ -376,13 +386,52 @@ def show_live_monitoring(data_manager: DataManager, live_monitor: LiveMonitor):
         """).fetchdf()
         
         if not recent_data.empty:
-            recent_data['Quality'] = recent_data.apply(lambda row: 
+            # Enhanced quality analysis
+            recent_data['Quality Status'] = recent_data.apply(lambda row: 
                 "🚨 NULL" if pd.isna(row['description']) or row['description'] == '' 
                 else "⚠️ SHORT" if row['description_length'] < 10 
-                else "✅ OK", axis=1)
+                else "⚠️ LONG" if row['description_length'] > 200
+                else "✅ GOOD", axis=1)
             
-            st.dataframe(recent_data[['id', 'title', 'Quality', 'description_length']], 
-                        use_container_width=True)
+            # Description quality scoring
+            recent_data['Quality Score'] = recent_data.apply(lambda row:
+                0 if pd.isna(row['description']) or row['description'] == ''
+                else 30 if row['description_length'] < 10
+                else 70 if row['description_length'] < 50
+                else 90 if row['description_length'] < 200
+                else 85, axis=1)
+            
+            # Prepare display columns
+            display_cols = ['id', 'title', 'Quality Status', 'Quality Score', 'description_length']
+            if show_descriptions:
+                display_cols.append('description')
+            
+            # Live AI analysis if enabled
+            if analyze_live and ai_analyzer and ai_analyzer.client:
+                st.info("🤖 Running live AI analysis on recent records...")
+                recent_data['AI Insight'] = recent_data['description'].apply(
+                    lambda desc: ai_analyzer.generate_summary(str(desc))[:100] + "..." 
+                    if pd.notna(desc) and desc != '' else "No content to analyze"
+                )
+                display_cols.append('AI Insight')
+            
+            st.dataframe(recent_data[display_cols], use_container_width=True)
+            
+            # Description quality distribution
+            if len(recent_data) > 0:
+                st.subheader("📊 Description Quality Distribution")
+                quality_counts = recent_data['Quality Status'].value_counts()
+                col1, col2, col3 = st.columns(3)
+                
+                with col1:
+                    good_count = quality_counts.get('✅ GOOD', 0)
+                    st.metric("✅ Good Quality", good_count, f"{good_count/len(recent_data)*100:.1f}%")
+                with col2:
+                    short_count = quality_counts.get('⚠️ SHORT', 0)
+                    st.metric("⚠️ Short Descriptions", short_count, f"{short_count/len(recent_data)*100:.1f}%")
+                with col3:
+                    null_count = quality_counts.get('🚨 NULL', 0)
+                    st.metric("🚨 NULL Descriptions", null_count, f"{null_count/len(recent_data)*100:.1f}%")
         else:
             st.info("No records found")
         
@@ -431,7 +480,7 @@ def main():
     tab1, tab2, tab3 = st.tabs(["🔴 Live Monitor", "🤖 AI Analysis", "📊 Data Overview"])
     
     with tab1:
-        show_live_monitoring(data_manager, live_monitor)
+        show_live_monitoring(data_manager, live_monitor, ai_analyzer)
     
     with tab2:
         show_ai_analysis(data_manager, ai_analyzer)

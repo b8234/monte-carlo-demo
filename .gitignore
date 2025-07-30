@@ -1,2 +1,45 @@
-# 🔒 Ignore all env files
+# 🔒 Monte Carlo Demo - Git Ignore Rules
+# ========================================
+
+# Environment files
 .env
+.venv/
+venv/
+
+# Database files  
+database/monte-carlo.duckdb
+database/*.db
+database/*.sqlite
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/*.log
+*.log
+
+# Test coverage
+htmlcov/
+.coverage
+.pytest_cache/
+
+# Distribution
+build/
+dist/
+*.egg-info/
+

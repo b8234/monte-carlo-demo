@@ -1,6 +1,7 @@
 """
-Data generator for creating sample data with various quality issues.
-This script generates realistic sample data for testing observability features.
+Quality Test Data Generator for Monte Carlo Data Observability Platform
+Generates enterprise-grade test datasets with various quality patterns for platform validation.
+Creates realistic sample data for testing observability features and quality monitoring.
 """
 
 import pandas as pd
@@ -9,8 +10,8 @@ import string
 from datetime import datetime, timedelta
 import uuid
 
-# Sample data templates
-TITLES = [
+# Enterprise data templates
+BUSINESS_TITLES = [
     "System Performance Alert",
     "Customer Feedback Summary", 
     "Security Patch Deployment",
@@ -28,7 +29,7 @@ TITLES = [
     "Technical Documentation"
 ]
 
-GOOD_DESCRIPTIONS = [
+HIGH_QUALITY_DESCRIPTIONS = [
     "Quarterly performance metrics show steady improvement across all key indicators. Customer satisfaction up 15% year-over-year.",
     "Successfully implemented new caching layer resulting in 40% reduction in page load times and improved user experience.",
     "Completed security audit with zero critical vulnerabilities found. All recommended patches applied successfully.",
@@ -41,7 +42,7 @@ GOOD_DESCRIPTIONS = [
     "Customer onboarding flow redesigned based on user research. Completion rate increased from 68% to 89%."
 ]
 
-PROBLEMATIC_DESCRIPTIONS = [
+QUALITY_VIOLATION_DESCRIPTIONS = [
     "",  # Empty description
     "OK",  # Too short
     "N/A",  # Generic
@@ -67,7 +68,7 @@ EDGE_CASE_DESCRIPTIONS = [
     "Unicode test: 测试 тест テスト اختبار परीक्षा"
 ]
 
-def generate_sample_data(num_records=100, include_problems=True):
+def generate_enterprise_operational_data(num_records=100, include_quality_issues=True):
     """Generate sample data with various quality characteristics."""
     
     data = []
@@ -77,10 +78,10 @@ def generate_sample_data(num_records=100, include_problems=True):
         record_id = start_id + i
         
         # Choose title
-        if random.random() < 0.05 and include_problems:  # 5% chance of problematic title
+        if random.random() < 0.05 and include_quality_issues:  # 5% chance of problematic title
             title = random.choice(["", "TBD", "Update", "Fix"])
         else:
-            title = random.choice(TITLES)
+            title = random.choice(BUSINESS_TITLES)
             
         # Add variation to titles
         if random.random() < 0.3:
@@ -94,12 +95,12 @@ def generate_sample_data(num_records=100, include_problems=True):
         )[0]
         
         if description_type == 'good':
-            description = random.choice(GOOD_DESCRIPTIONS)
+            description = random.choice(HIGH_QUALITY_DESCRIPTIONS)
             # Add some variation
             if random.random() < 0.3:
                 description += f" Ticket ID: {random.randint(1000, 9999)}"
         elif description_type == 'problematic':
-            description = random.choice(PROBLEMATIC_DESCRIPTIONS)
+            description = random.choice(QUALITY_VIOLATION_DESCRIPTIONS)
         elif description_type == 'edge_case':
             description = random.choice(EDGE_CASE_DESCRIPTIONS)
         else:  # null
@@ -113,7 +114,7 @@ def generate_sample_data(num_records=100, include_problems=True):
     
     return pd.DataFrame(data)
 
-def generate_timestamped_data(num_records=50):
+def generate_system_monitoring_events(num_records=50):
     """Generate data with timestamps to simulate real-time data flow."""
     
     data = []
@@ -153,44 +154,44 @@ def generate_timestamped_data(num_records=50):
     return pd.DataFrame(data)
 
 def main():
-    """Generate all sample data files."""
+    """Generate enterprise quality test datasets for Monte Carlo platform validation."""
     
-    print("🎲 Generating sample data with quality issues...")
+    print("� Generating Enterprise Quality Test Data for Monte Carlo Platform...")
     
-    # Generate basic sample data
-    sample_df = generate_sample_data(100, include_problems=True)
-    sample_df.to_csv("data/generated_sample.csv", index=False)
-    print(f"✅ Generated generated_sample.csv with {len(sample_df)} records")
+    # Generate baseline operational data
+    operational_df = generate_enterprise_operational_data(100, include_quality_issues=True)
+    operational_df.to_csv("data/user_behavior_analytics_2025.csv", index=False)
+    print(f"✅ Generated user_behavior_analytics_2025.csv with {len(operational_df)} records")
     
-    # Generate timestamped data
-    timestamped_df = generate_timestamped_data(50)
-    timestamped_df.to_csv("data/timestamped_events.csv", index=False)
-    print(f"✅ Generated timestamped_events.csv with {len(timestamped_df)} records")
+    # Generate system monitoring events
+    monitoring_df = generate_system_monitoring_events(50)
+    monitoring_df.to_csv("data/system_monitoring_events_2025.csv", index=False)
+    print(f"✅ Generated system_monitoring_events_2025.csv with {len(monitoring_df)} records")
     
-    # Generate problematic data focused dataset
-    problematic_data = []
+    # Generate quality violation dataset
+    quality_violations = []
     for i in range(20):
-        problematic_data.append({
+        quality_violations.append({
             'id': 4000 + i,
             'title': random.choice(["", "TBD", "Fix", "Update", "NULL", "n/a"]) if i < 10 else f"Valid Title {i}",
-            'description': random.choice(PROBLEMATIC_DESCRIPTIONS + [None, "", " "]) if i < 15 else f"Valid description {i}"
+            'description': random.choice(QUALITY_VIOLATION_DESCRIPTIONS + [None, "", " "]) if i < 15 else f"Valid description {i}"
         })
     
-    problematic_df = pd.DataFrame(problematic_data)
-    problematic_df.to_csv("data/problematic_data.csv", index=False)
-    print(f"✅ Generated problematic_data.csv with {len(problematic_df)} records")
+    violations_df = pd.DataFrame(quality_violations)
+    violations_df.to_csv("data/data_quality_violations_2025.csv", index=False)
+    print(f"✅ Generated data_quality_violations_2025.csv with {len(violations_df)} records")
     
-    # Show summary
-    print(f"\n📊 Data Generation Summary:")
-    print(f"   Total records across all files: {len(sample_df) + len(timestamped_df) + len(problematic_df)}")
-    print(f"   Files created: 3")
-    print(f"   Data quality issues included: Empty fields, short text, special characters, edge cases")
+    # Show enterprise summary
+    print(f"\n📊 Enterprise Dataset Generation Summary:")
+    print(f"   Total records across all datasets: {len(operational_df) + len(monitoring_df) + len(violations_df)}")
+    print(f"   Enterprise datasets created: 3")
+    print(f"   Quality patterns included: Empty fields, validation failures, encoding issues, edge cases")
     
-    print(f"\n💡 Use these files to test:")
-    print(f"   - AI hallucination detection on poor descriptions")
-    print(f"   - Data quality validation on empty/null fields") 
-    print(f"   - Edge case handling with special characters")
-    print(f"   - Time-series analysis with timestamped data")
+    print(f"\n💡 Use these datasets for Monte Carlo platform testing:")
+    print(f"   - Quality monitoring validation with user behavior analytics")
+    print(f"   - Real-time alerting testing with system monitoring events") 
+    print(f"   - Anomaly detection validation with quality violations")
+    print(f"   - End-to-end pipeline monitoring with time-series data")
 
 if __name__ == "__main__":
     main()

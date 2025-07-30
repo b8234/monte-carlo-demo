@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-Fake Data Generator for Monte Carlo Demo
-Creates realistic business data with various quality issues for demonstration purposes.
+Enterprise Dataset Generator for Monte Carlo Data Observability Platform
+Creates realistic business data with various quality patterns for demonstration purposes.
+Generates datasets that mirror actual enterprise data scenarios.
 """
 
 import csv
@@ -9,10 +10,10 @@ import random
 import datetime
 from pathlib import Path
 
-class FakeDataGenerator:
+class EnterpriseDatasetGenerator:
     def __init__(self):
-        # Business scenarios with quality issues
-        self.good_scenarios = [
+        # Enterprise business scenarios with quality patterns
+        self.high_quality_scenarios = [
             ("Quarterly Revenue Report", "Q3 revenue increased by 23% year-over-year, reaching $4.2M with strong performance in enterprise sales and customer retention rates of 94%."),
             ("Product Launch Success", "New mobile application launched with 50,000+ downloads in first week, achieving 4.7-star rating and 85% user retention after 30 days."),
             ("Security Audit Complete", "Annual penetration testing completed with no critical vulnerabilities found. All systems updated and security protocols enhanced."),
@@ -23,7 +24,7 @@ class FakeDataGenerator:
             ("Cost Optimization", "Database query optimization reduced average response time from 1.2s to 180ms, improving user experience significantly."),
         ]
         
-        self.problematic_scenarios = [
+        self.quality_violation_scenarios = [
             ("", "This record has a missing title field which should trigger data quality alerts and validation errors."),
             ("Data Breach Alert", ""),  # Empty description
             ("System Failure", None),  # NULL description
@@ -38,7 +39,7 @@ class FakeDataGenerator:
             ("Injection Test", "<script>alert('XSS')</script> DROP DATABASE;"),
         ]
         
-        self.realistic_issues = [
+        self.business_critical_incidents = [
             ("API Outage", "Payment processing API experiencing intermittent 500 errors affecting 12% of transactions. Engineering team investigating connection pool exhaustion."),
             ("Data Quality Alert", "ETL pipeline detected 2,847 records with invalid email formats in customer data. Data validation rules being updated."),
             ("Security Incident", "Unusual login patterns detected from IP range 185.220.101.x. Account security measures activated and monitoring increased."),
@@ -55,13 +56,13 @@ class FakeDataGenerator:
         records = []
         
         if scenario_type == "good":
-            scenarios = self.good_scenarios * (num_records // len(self.good_scenarios) + 1)
+            scenarios = self.high_quality_scenarios * (num_records // len(self.high_quality_scenarios) + 1)
         elif scenario_type == "problematic":
-            scenarios = self.problematic_scenarios * (num_records // len(self.problematic_scenarios) + 1)
+            scenarios = self.quality_violation_scenarios * (num_records // len(self.quality_violation_scenarios) + 1)
         elif scenario_type == "realistic":
-            scenarios = self.realistic_issues * (num_records // len(self.realistic_issues) + 1)
+            scenarios = self.business_critical_incidents * (num_records // len(self.business_critical_incidents) + 1)
         else:  # mixed
-            scenarios = (self.good_scenarios + self.problematic_scenarios + self.realistic_issues)
+            scenarios = (self.high_quality_scenarios + self.quality_violation_scenarios + self.business_critical_incidents)
             random.shuffle(scenarios)
         
         # Select records
@@ -149,28 +150,28 @@ class FakeDataGenerator:
         return filepath
 
 def main():
-    """Generate various types of fake data files."""
+    """Generate various types of enterprise datasets for Monte Carlo platform demonstration."""
     
-    generator = FakeDataGenerator()
+    generator = EnterpriseDatasetGenerator()
     
-    print("🎭 Fake Data Generator for Monte Carlo Demo")
-    print("=" * 50)
+    print("� Enterprise Dataset Generator for Monte Carlo Platform")
+    print("=" * 60)
     
-    # Generate different types of data
-    generator.generate_csv_file("fake_good_quality.csv", 15, "good")
-    generator.generate_csv_file("fake_with_issues.csv", 20, "problematic") 
-    generator.generate_csv_file("fake_realistic_alerts.csv", 12, "realistic")
-    generator.generate_csv_file("fake_mixed_data.csv", 25, "mixed")
-    generator.generate_time_series_data("fake_time_series.csv", 5)
+    # Generate different types of enterprise data
+    generator.generate_csv_file("customer_engagement_metrics_baseline.csv", 15, "good")
+    generator.generate_csv_file("data_quality_violations_detected.csv", 20, "problematic") 
+    generator.generate_csv_file("business_critical_incidents.csv", 12, "realistic")
+    generator.generate_csv_file("mixed_quality_operations_data.csv", 25, "mixed")
+    generator.generate_time_series_data("system_monitoring_events_stream.csv", 5)
     
-    print("\n🎯 Fake data files created in demo/ folder!")
-    print("📝 You can now use these for live demonstrations:")
-    print("   - Copy files to demo/ folder during presentations")
-    print("   - Edit files to create custom scenarios")
-    print("   - Use different files to show various quality patterns")
+    print("\n🎯 Enterprise datasets created in demo/ folder!")
+    print("📝 Use these datasets for Monte Carlo platform demonstrations:")
+    print("   - Copy files to data/ folder to trigger quality monitoring")
+    print("   - Edit files to create custom business scenarios")
+    print("   - Use different files to demonstrate various quality patterns")
     
-    print("\n🚀 To use in live demo:")
-    print("   cp demo/fake_mixed_data.csv demo/live_demo_$(date +%s).csv")
+    print("\n🚀 To use in live monitoring:")
+    print("   cp demo/mixed_quality_operations_data.csv data/live_operations_$(date +%s).csv")
 
 if __name__ == "__main__":
     main()

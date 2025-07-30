@@ -67,7 +67,7 @@ jobs:
       run: |
         mkdir -p ~/.dbt
         cat > ~/.dbt/profiles.yml << 'EOF'
-        dbt_project:
+        monte_carlo_dbt:
           target: dev
           outputs:
             dev:
@@ -83,6 +83,6 @@ jobs:
     
     - name: Run dbt
       run: |
-        cd dbt_project
+        cd monte_carlo_dbt
         dbt run
         dbt test

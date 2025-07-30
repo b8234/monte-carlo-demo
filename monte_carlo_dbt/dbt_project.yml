@@ -1,10 +1,10 @@
-name: 'dbt_project'       # Must be lowercase and match folder name
+name: 'monte_carlo_dbt'    # Must be lowercase and match folder name
 version: '1.0.0'          # Can be any semver
 config-version: 2         # Always use version 2
 
-profile: 'dbt_project'    # MUST match the profile name in ~/.dbt/profiles.yml
+profile: 'monte_carlo_dbt' # MUST match the profile name in ~/.dbt/profiles.yml
 
-# Folder paths relative to this dbt_project.yml file
+# Folder paths relative to this monte_carlo_dbt project file
 model-paths: ["models"]
 analysis-paths: ["analyses"]
 test-paths: ["tests"]
@@ -17,5 +17,5 @@ clean-targets:
   - "dbt_packages"
 
 models:
-  dbt_project:
-    +materialized: table   # or 'view' if preferred; 'table' is better for local dev
+  monte_carlo_dbt:
+    materialized: table
