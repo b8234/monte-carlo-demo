@@ -43,3 +43,6 @@ build/
 dist/
 *.egg-info/
 
+# Markdown files
+personal.md
+

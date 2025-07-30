@@ -48,6 +48,48 @@ command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
+# Function to cleanup any running Streamlit processes
+cleanup_streamlit() {
+    print_status "Checking for running Streamlit processes..."
+    
+    # Find Streamlit processes
+    STREAMLIT_PIDS=$(pgrep -f "streamlit.*monte_carlo_dashboard" 2>/dev/null || true)
+    
+    if [ -n "$STREAMLIT_PIDS" ]; then
+        print_warning "Found running Streamlit processes. Stopping them..."
+        echo "$STREAMLIT_PIDS" | while read -r pid; do
+            if [ -n "$pid" ]; then
+                print_status "Stopping Streamlit process (PID: $pid)..."
+                kill "$pid" 2>/dev/null || true
+                sleep 1
+                # Force kill if still running
+                if kill -0 "$pid" 2>/dev/null; then
+                    print_warning "Force stopping process $pid..."
+                    kill -9 "$pid" 2>/dev/null || true
+                fi
+            fi
+        done
+        
+        # Wait a moment for processes to fully terminate
+        sleep 2
+        print_success "Streamlit processes stopped"
+    else
+        print_status "No running Streamlit processes found"
+    fi
+    
+    # Also check for any processes using the target ports
+    for port in 8501 8502 8503; do
+        if command_exists lsof; then
+            PORT_PID=$(lsof -ti:$port 2>/dev/null || true)
+            if [ -n "$PORT_PID" ]; then
+                print_warning "Port $port is in use by process $PORT_PID. Stopping..."
+                kill "$PORT_PID" 2>/dev/null || true
+                sleep 1
+            fi
+        fi
+    done
+}
+
 # Function to detect Python command
 detect_python() {
     if command_exists python3; then
@@ -189,6 +231,9 @@ print(f'✅ Database ready with {record_count} records')
 start_dashboard() {
     print_header "Starting Monte Carlo Dashboard"
     
+    # Clean up any existing Streamlit processes first
+    cleanup_streamlit
+    
     print_status "Dashboard will be available at: http://localhost:8501"
     print_status "Press Ctrl+C to stop the dashboard"
     echo
@@ -213,6 +258,7 @@ show_usage() {
     echo "  install   - Install dependencies only"
     echo "  data      - Load data only"
     echo "  start     - Start dashboard only"
+    echo "  reset     - Stop any running processes and restart dashboard"
     echo "  verify    - Verify setup only"
     echo "  clean     - Clean virtual environment"
     echo "  help      - Show this help message"
@@ -280,6 +326,17 @@ main() {
             if [ -d "$VENV_DIR" ]; then
                 source "$VENV_DIR/bin/activate"
             fi
+            start_dashboard
+            ;;
+        "reset")
+            print_header "Resetting Dashboard"
+            cleanup_streamlit
+            if [ -d "$VENV_DIR" ]; then
+                source "$VENV_DIR/bin/activate"
+            fi
+            print_success "Dashboard reset complete"
+            echo
+            read -p "Press Enter to start the dashboard (or Ctrl+C to exit)..."
             start_dashboard
             ;;
         "verify")
