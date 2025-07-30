@@ -50,16 +50,19 @@ class MockMonteCarloClient:
         return {
             "status": "connected",
             "mode": "demo",
-            "message": "Demo mode active - no credentials required",
-            "timestamp": datetime.now().isoformat()
+            "message": "🎬 Demo Mode: Simulated connection (no real credentials required)",
+            "timestamp": datetime.now().isoformat(),
+            "note": "This demonstrates SDK patterns without actual Monte Carlo platform access"
         }
     
     def get_account_info(self) -> Dict[str, Any]:
         """Get account information (simulated)"""
         return {
-            "account_name": "Demo Account",
-            "account_id": "demo-account-123",
-            "tier": "Enterprise Demo",
+            "account_name": "Demo Account (Simulated)",
+            "tier": "Demo Tier",
+            "account_id": "demo-12345",
+            "mode": "demo",
+            "note": "Simulated data for learning purposes",
             "features": [
                 "Data Quality Monitoring",
                 "Custom Rules",

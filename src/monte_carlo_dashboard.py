@@ -672,18 +672,29 @@ def render_sdk_overview(client):
     with col1:
         status = client.client.test_connection()
         if status['status'] == 'connected':
-            st.success(f"✅ Connected ({status['mode']} mode)")
-            st.info(status['message'])
+            if status['mode'] == 'demo':
+                st.info(f"🎬 Demo Mode Active")
+                st.caption("Simulated connection - no real credentials required")
+                st.caption(status.get('note', ''))
+            else:
+                st.success(f"✅ Connected ({status['mode']} mode)")
+            st.write(status['message'])
         else:
             st.error(f"❌ Connection failed: {status['message']}")
     
     with col2:
         # Account information
         account_info = client.client.get_account_info()
-        st.info("**Account Information**")
+        if account_info.get('mode') == 'demo':
+            st.info("**Demo Account Information**")
+            st.caption("🎬 Simulated data for learning purposes")
+        else:
+            st.info("**Account Information**")
         st.write(f"**Account:** {account_info['account_name']}")
         st.write(f"**Tier:** {account_info['tier']}")
         st.write(f"**Account ID:** {account_info['account_id']}")
+        if account_info.get('note'):
+            st.caption(account_info['note'])
     
     # Integration status
     st.subheader("🎯 Integration Status")
