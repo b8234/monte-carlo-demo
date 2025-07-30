@@ -413,4 +413,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 *Built with ❤️ for enterprise data engineering excellence*
 
-**Ready to demonstrate production-level data engineering capabilities in your next interview!** 🚀
+**Ready to demonstrate production-level data engineering capabilities!** 🚀
