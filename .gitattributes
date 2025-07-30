@@ -1,0 +1,8 @@
+# Git Attributes for Monte Carlo Demo
+# ===================================
+
+# Personal presentation materials should not be merged to main branch
+# Use: git merge main-staging --strategy-option=theirs
+# Or manually exclude personal.md when merging to main
+
+personal.md merge=ours
