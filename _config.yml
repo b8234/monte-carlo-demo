@@ -1,0 +1,67 @@
+theme: jekyll-theme-minimal
+title: Monte Carlo Data Quality Demo
+description: A comprehensive learning platform demonstrating data quality management through simulation and visualization
+show_downloads: true
+google_analytics: # Add your tracking ID here if desired
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+
+# SEO
+lang: en
+author: 
+  name: "Monte Carlo Data Quality Demo"
+  email: "your-email@example.com"
+
+# Navigation
+header_pages:
+  - index.html
+
+# Social
+github_username: b8234
+repository: monte-carlo-demo
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - "*.py"
+  - "*.duckdb"
+  - requirements.txt
+  - logs/
+  - data/raw_data.csv
+
+# Include in processing
+include:
+  - docs/
+
+# Collections
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+  - scope:
+      path: ""
+      type: "docs"
+    values:
+      layout: "default"

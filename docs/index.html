@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monte Carlo Data Observability Demo | Learning Platform</title>
+    <meta name="description" content="Professional data engineering demonstration showcasing Monte Carlo data observability concepts, modern data stack expertise, and enterprise-level development practices.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Monte Carlo Data Observability Demo">
+    <meta property="og:description" content="Enterprise-level data engineering demonstration with real-time monitoring, AI analysis, and modern data stack integration.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://b8234.github.io/monte-carlo-demo/">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="nav-icon">🎯</span>
+                <span class="nav-title">Monte Carlo Demo</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#overview" class="nav-link">Overview</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#demo" class="nav-link">Live Demo</a></li>
+                <li><a href="#architecture" class="nav-link">Architecture</a></li>
+                <li><a href="#code" class="nav-link">Code</a></li>
+                <li><a href="https://github.com/b8234/monte-carlo-demo" class="nav-link github-link" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                    GitHub
+                </a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-icon">🚀</span>
+                    <span>Enterprise Data Engineering Demonstration</span>
+                </div>
+                <h1 class="hero-title">
+                    Monte Carlo Data Observability
+                    <span class="hero-accent">Learning Platform</span>
+                </h1>
+                <p class="hero-description">
+                    Professional demonstration of data observability concepts inspired by Monte Carlo Data. 
+                    Showcasing modern data stack expertise, real-time monitoring, AI integration, 
+                    and enterprise-level development practices.
+                </p>
+                <div class="hero-actions">
+                    <a href="#demo" class="btn btn-primary">
+                        <span class="btn-icon">🎪</span>
+                        View Live Demo
+                    </a>
+                    <a href="https://github.com/b8234/monte-carlo-demo" class="btn btn-secondary" target="_blank">
+                        <span class="btn-icon">📂</span>
+                        View Source Code
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">40KB+</span>
+                        <span class="stat-label">Production Code</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Dashboard Tabs</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">18</span>
+                        <span class="stat-label">Demo Scenarios</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">700+</span>
+                        <span class="stat-label">SDK Lines</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="dashboard-preview">
+                    <div class="dashboard-header">
+                        <div class="dashboard-controls">
+                            <span class="control red"></span>
+                            <span class="control yellow"></span>
+                            <span class="control green"></span>
+                        </div>
+                        <div class="dashboard-title">Monte Carlo Dashboard</div>
+                    </div>
+                    <div class="dashboard-content">
+                        <div class="dashboard-tabs">
+                            <div class="tab active">Quality Dashboard</div>
+                            <div class="tab">AI Analysis</div>
+                            <div class="tab">File Monitor</div>
+                            <div class="tab">SDK Integration</div>
+                        </div>
+                        <div class="dashboard-metrics">
+                            <div class="metric">
+                                <div class="metric-value">92.5%</div>
+                                <div class="metric-label">Quality Score</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">1,247</div>
+                                <div class="metric-label">Records</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">18</div>
+                                <div class="metric-label">Files</div>
+                            </div>
+                        </div>
+                        <div class="dashboard-chart">
+                            <div class="chart-bars">
+                                <div class="bar" style="height: 60%"></div>
+                                <div class="bar" style="height: 80%"></div>
+                                <div class="bar" style="height: 95%"></div>
+                                <div class="bar" style="height: 85%"></div>
+                                <div class="bar" style="height: 92%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Learning Objectives</h2>
+                <p class="section-subtitle">
+                    Hands-on experience with enterprise data observability concepts without requiring actual platform access
+                </p>
+            </div>
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <div class="objective-icon">🎯</div>
+                    <h3>Data Observability Mastery</h3>
+                    <p>Multi-dimensional quality scoring, anomaly detection, and monitoring patterns inspired by Monte Carlo Data's enterprise platform.</p>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-icon">🔧</div>
+                    <h3>SDK Integration Skills</h3>
+                    <p>Hands-on experience with pycarlo SDK patterns, API development, authentication handling, and production integration strategies.</p>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-icon">🚀</div>
+                    <h3>Modern Data Stack</h3>
+                    <p>Working proficiency with DuckDB, Streamlit, Python ecosystem, and AI integration in a cohesive data engineering solution.</p>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-icon">⚡</div>
+                    <h3>Real-time Systems</h3>
+                    <p>File monitoring, live dashboard updates, automated validation pipelines, and event-driven architecture patterns.</p>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-icon">🏗️</div>
+                    <h3>Production Practices</h3>
+                    <p>Professional deployment automation, comprehensive error handling, testing practices, and enterprise-level documentation.</p>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-icon">🎓</div>
+                    <h3>Self-Directed Learning</h3>
+                    <p>Demonstrates initiative to learn enterprise platforms through hands-on implementation and practical application.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Platform Features</h2>
+                <p class="section-subtitle">
+                    Comprehensive data observability demonstration with enterprise-grade capabilities
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-time Quality Dashboard</h3>
+                    <p>Live quality scoring with configurable thresholds, historical trend analysis, and multi-dimensional scoring for completeness, consistency, and accuracy.</p>
+                    <ul class="feature-list">
+                        <li>Interactive visualizations with drill-down capabilities</li>
+                        <li>Automated quality score calculation</li>
+                        <li>Real-time metric updates</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Powered Analysis</h3>
+                    <p>OpenAI integration providing natural language insights, anomaly detection, and business impact assessment of data quality issues.</p>
+                    <ul class="feature-list">
+                        <li>Intelligent pattern recognition</li>
+                        <li>Automated issue classification</li>
+                        <li>Actionable recommendations</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📂</div>
+                    <h3>Live File Monitoring</h3>
+                    <p>Real-time file system monitoring with automatic validation, schema drift detection, and comprehensive error tracking.</p>
+                    <ul class="feature-list">
+                        <li>Automatic new file detection</li>
+                        <li>Schema validation on ingestion</li>
+                        <li>Per-file quality assessment</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Monte Carlo SDK Integration</h3>
+                    <p>Production-ready integration patterns with pycarlo SDK, demonstrating enterprise observability platform connectivity.</p>
+                    <ul class="feature-list">
+                        <li>Demo and production modes</li>
+                        <li>Quality rule management</li>
+                        <li>Incident tracking patterns</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Live Demonstration</h2>
+                <p class="section-subtitle">
+                    Experience the platform with realistic enterprise data scenarios
+                </p>
+            </div>
+            <div class="demo-container">
+                <div class="demo-tabs">
+                    <button class="demo-tab active" data-tab="setup">Quick Setup</button>
+                    <button class="demo-tab" data-tab="dashboard">Dashboard</button>
+                    <button class="demo-tab" data-tab="monitoring">File Monitoring</button>
+                    <button class="demo-tab" data-tab="integration">SDK Integration</button>
+                </div>
+                
+                <div class="demo-content">
+                    <div class="demo-panel active" id="setup">
+                        <h3>One-Command Setup</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-title">Terminal</span>
+                                <button class="copy-btn" data-copy="git clone https://github.com/b8234/monte-carlo-demo.git&#10;cd monte-carlo-demo&#10;./setup.sh">📋 Copy</button>
+                            </div>
+                            <pre><code># Clone and start the demo
+git clone https://github.com/b8234/monte-carlo-demo.git
+cd monte-carlo-demo
+./setup.sh</code></pre>
+                        </div>
+                        <p>The setup script automatically:</p>
+                        <ul>
+                            <li>Creates Python virtual environment</li>
+                            <li>Installs all dependencies</li>
+                            <li>Loads sample enterprise data</li>
+                            <li>Starts dashboard at <code>localhost:8501</code></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="demo-panel" id="dashboard">
+                        <h3>Interactive Dashboard Features</h3>
+                        <div class="dashboard-features">
+                            <div class="feature-demo">
+                                <h4>Quality Metrics</h4>
+                                <p>Real-time quality scoring with multi-dimensional analysis</p>
+                                <div class="metric-examples">
+                                    <span class="metric-badge">Completeness: 94%</span>
+                                    <span class="metric-badge">Consistency: 89%</span>
+                                    <span class="metric-badge">Timeliness: 97%</span>
+                                </div>
+                            </div>
+                            <div class="feature-demo">
+                                <h4>Live Updates</h4>
+                                <p>Auto-refresh capabilities with real-time data ingestion</p>
+                                <div class="live-indicator">
+                                    <span class="pulse"></span>
+                                    Live Monitoring Active
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-panel" id="monitoring">
+                        <h3>File System Monitoring Demo</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-title">Create Demo File</span>
+                                <button class="copy-btn" data-copy="cd sample_data&#10;cat > new_data_$(date +%Y%m%d).csv << EOF&#10;id,title,description&#10;1001,Demo Record,This demonstrates live file monitoring&#10;EOF">📋 Copy</button>
+                            </div>
+                            <pre><code># Create a new data file while dashboard is running
+cd sample_data
+cat > new_data_$(date +%Y%m%d).csv << EOF
+id,title,description
+1001,Demo Record,This demonstrates live file monitoring
+EOF</code></pre>
+                        </div>
+                        <p>Watch the File Monitoring tab for real-time detection and processing!</p>
+                    </div>
+                    
+                    <div class="demo-panel" id="integration">
+                        <h3>Monte Carlo SDK Patterns</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-title">Python Integration</span>
+                            </div>
+                            <pre><code># Import Monte Carlo integration
+from monte_carlo_client import MonteCarloIntegration
+
+# Initialize client (demo mode)
+client = MonteCarloIntegration()
+
+# Get quality metrics
+metrics = client.get_quality_metrics()
+print(f"Overall Score: {metrics['overall_score']}%")</code></pre>
+                        </div>
+                        <p>Demonstrates production-ready SDK integration patterns with both demo and live modes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Technical Architecture</h2>
+                <p class="section-subtitle">
+                    Modern data stack with enterprise-grade design patterns
+                </p>
+            </div>
+            <div class="architecture-content">
+                <div class="architecture-diagram">
+                    <div class="arch-layer frontend">
+                        <h4>Frontend Layer</h4>
+                        <div class="arch-component">
+                            <span class="component-icon">🖥️</span>
+                            <span>Streamlit Dashboard</span>
+                        </div>
+                    </div>
+                    <div class="arch-layer processing">
+                        <h4>Processing Layer</h4>
+                        <div class="arch-component">
+                            <span class="component-icon">🔍</span>
+                            <span>File Monitor</span>
+                        </div>
+                        <div class="arch-component">
+                            <span class="component-icon">🤖</span>
+                            <span>AI Analysis</span>
+                        </div>
+                        <div class="arch-component">
+                            <span class="component-icon">📊</span>
+                            <span>Quality Engine</span>
+                        </div>
+                    </div>
+                    <div class="arch-layer data">
+                        <h4>Data Layer</h4>
+                        <div class="arch-component">
+                            <span class="component-icon">🗄️</span>
+                            <span>DuckDB Analytics</span>
+                        </div>
+                        <div class="arch-component">
+                            <span class="component-icon">📁</span>
+                            <span>Sample Data</span>
+                        </div>
+                    </div>
+                    <div class="arch-layer integration">
+                        <h4>Integration Layer</h4>
+                        <div class="arch-component">
+                            <span class="component-icon">🔗</span>
+                            <span>Monte Carlo SDK</span>
+                        </div>
+                        <div class="arch-component">
+                            <span class="component-icon">🌐</span>
+                            <span>OpenAI API</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-stack">
+                    <h3>Technology Stack</h3>
+                    <div class="tech-categories">
+                        <div class="tech-category">
+                            <h4>Backend</h4>
+                            <div class="tech-badges">
+                                <span class="tech-badge">Python 3.12+</span>
+                                <span class="tech-badge">DuckDB</span>
+                                <span class="tech-badge">Pandas</span>
+                            </div>
+                        </div>
+                        <div class="tech-category">
+                            <h4>Frontend</h4>
+                            <div class="tech-badges">
+                                <span class="tech-badge">Streamlit</span>
+                                <span class="tech-badge">Interactive Charts</span>
+                                <span class="tech-badge">Real-time Updates</span>
+                            </div>
+                        </div>
+                        <div class="tech-category">
+                            <h4>Integration</h4>
+                            <div class="tech-badges">
+                                <span class="tech-badge">Monte Carlo SDK</span>
+                                <span class="tech-badge">OpenAI API</span>
+                                <span class="tech-badge">Watchdog</span>
+                            </div>
+                        </div>
+                        <div class="tech-category">
+                            <h4>DevOps</h4>
+                            <div class="tech-badges">
+                                <span class="tech-badge">Automated Setup</span>
+                                <span class="tech-badge">Git Workflows</span>
+                                <span class="tech-badge">Testing</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Section -->
+    <section id="code" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Code Quality & Documentation</h2>
+                <p class="section-subtitle">
+                    Enterprise-level code with comprehensive documentation for confident technical discussions
+                </p>
+            </div>
+            <div class="code-quality-grid">
+                <div class="quality-card">
+                    <div class="quality-icon">📝</div>
+                    <h3>Comprehensive Documentation</h3>
+                    <p>Every class and function includes detailed docstrings explaining learning objectives, algorithms, and enterprise patterns.</p>
+                    <div class="quality-stats">
+                        <span>40KB+ documented code</span>
+                        <span>700+ lines SDK integration</span>
+                    </div>
+                </div>
+                <div class="quality-card">
+                    <div class="quality-icon">🏗️</div>
+                    <h3>Enterprise Patterns</h3>
+                    <p>Production-ready architecture with modular design, error handling, configuration management, and scalable patterns.</p>
+                    <div class="quality-stats">
+                        <span>Modular architecture</span>
+                        <span>Professional deployment</span>
+                    </div>
+                </div>
+                <div class="quality-card">
+                    <div class="quality-icon">🔧</div>
+                    <h3>Algorithm Explanations</h3>
+                    <p>Quality scoring algorithms documented with industry context, making technical discussions confident and informed.</p>
+                    <div class="quality-stats">
+                        <span>Multi-dimensional scoring</span>
+                        <span>Statistical validation</span>
+                    </div>
+                </div>
+                <div class="quality-card">
+                    <div class="quality-icon">🎯</div>
+                    <h3>Interview Ready</h3>
+                    <p>Code comments and documentation designed to enable confident explanation of design decisions and technical choices.</p>
+                    <div class="quality-stats">
+                        <span>Technical depth</span>
+                        <span>Design rationale</span>
+                    </div>
+                </div>
+            </div>
+            <div class="code-sample">
+                <h3>Sample Code Documentation</h3>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">Quality Scoring Algorithm</span>
+                    </div>
+                    <pre><code>def get_live_stats(self) -> Dict:
+    """
+    Calculate Real-time Data Quality Statistics
+    ==========================================
+    
+    Implements Monte Carlo-style quality scoring with multiple dimensions:
+    
+    Quality Metrics:
+    - Total Records: Overall data volume
+    - Recent Records: New data growth (last 10 records)
+    - NULL Descriptions: Completeness validation
+    - Short Descriptions: Content quality validation (<10 chars)
+    - Quality Score: Composite score = (Valid Records / Total) × 100
+    
+    This mirrors enterprise data observability patterns used by Monte Carlo.
+    """</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Explore Data Observability?</h2>
+                <p>Experience enterprise-level data engineering with this comprehensive learning demonstration.</p>
+                <div class="cta-actions">
+                    <a href="https://github.com/b8234/monte-carlo-demo" class="btn btn-primary" target="_blank">
+                        <span class="btn-icon">🚀</span>
+                        Start Demo
+                    </a>
+                    <a href="https://github.com/b8234/monte-carlo-demo/tree/main-staging" class="btn btn-secondary" target="_blank">
+                        <span class="btn-icon">👨‍💻</span>
+                        View Development
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Project</h4>
+                    <ul>
+                        <li><a href="https://github.com/b8234/monte-carlo-demo">Source Code</a></li>
+                        <li><a href="https://github.com/b8234/monte-carlo-demo/blob/main/README.md">Documentation</a></li>
+                        <li><a href="https://github.com/b8234/monte-carlo-demo/issues">Issues</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Learning</h4>
+                    <ul>
+                        <li><a href="https://www.montecarlodata.com/">Monte Carlo Data</a></li>
+                        <li><a href="https://duckdb.org/">DuckDB</a></li>
+                        <li><a href="https://streamlit.io/">Streamlit</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://github.com/b8234">GitHub Profile</a></li>
+                        <li><a href="mailto:your-email@example.com">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Monte Carlo Demo Learning Project. Built with ❤️ for data engineering excellence.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
