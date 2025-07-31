@@ -85,6 +85,10 @@ jobs:
       run: |
         pip install pandas duckdb
         python scripts/load_csv.py
+
+    # Add this step here
+    - name: List database directory contents
+      run: ls -l database
     
     - name: Run dbt
       run: |
