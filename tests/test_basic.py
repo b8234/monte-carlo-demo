@@ -81,7 +81,7 @@ class TestConfiguration:
         assert hasattr(config, 'log_level')
         
         # Should have default values
-        assert config.duckdb_path == "database/monte-carlo.duckdb"
+        assert config.duckdb_path == "monte_carlo_dbt/database/monte-carlo.duckdb"
         assert config.log_level == "INFO"
         
         # Test that config object works
