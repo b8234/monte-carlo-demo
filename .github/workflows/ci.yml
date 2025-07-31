@@ -78,8 +78,8 @@ jobs:
 
     - name: Create DuckDB database file if missing
       run: |
-        mkdir -p database
-        python -c "import duckdb; duckdb.connect('database/monte-carlo.duckdb').close()"
+        mkdir -p monte_carlo_dbt/database
+        python -c "import duckdb; duckdb.connect('monte_carlo_dbt/database/monte-carlo.duckdb').close()"
 
     - name: Load test data
       run: |
