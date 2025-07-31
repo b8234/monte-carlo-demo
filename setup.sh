@@ -384,7 +384,7 @@ cat << 'EOF'
 ║                                                               ║
 ║   🎯 Monte Carlo Data Observability Demo Setup               ║  
 ║                                                               ║
-║   Enterprise-ready data quality monitoring platform          ║
+║   Professional data quality monitoring platform              ║
 ║   • Real-time monitoring & AI-powered insights               ║
 ║   • Live file monitoring & quality scoring                   ║
 ║   • Professional demo with enterprise datasets               ║

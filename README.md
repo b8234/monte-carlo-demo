@@ -1,9 +1,9 @@
 # 🎯 Monte Carlo Data Observability Demo
 
-> **Enterprise-ready data quality monitoring platform demonstrating production-level data engineering capabilities**
+> **Professional data quality monitoring platform demonstrating enterprise-grade data engineering patterns and best practices**
 
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
-[![Streamlit](https://img.shields.io/badge/streamlit-1.28+-red.svg)](https://streamlit.io/)
+[![Streamlit](https://img.shields.io/badge/streamlit-latest-red.svg)](https://streamlit.io/)
 [![DuckDB](https://img.shields.io/badge/duckdb-latest-yellow.svg)](https://duckdb.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
@@ -29,7 +29,7 @@ This project demonstrates a **comprehensive learning platform** for data observa
 - **Data Observability Mastery**: Understanding multi-dimensional quality scoring, anomaly detection, and monitoring patterns
 - **Enterprise SDK Integration**: Hands-on experience with Monte Carlo's pycarlo SDK and API patterns
 - **Modern Data Stack Proficiency**: Working with DuckDB, Streamlit, Python, and AI integration
-- **Production Development Practices**: Professional deployment, error handling, testing, and documentation
+- **Professional Development Practices**: Enterprise-style deployment, error handling, testing, and documentation
 - **Real-time Systems Architecture**: File monitoring, live dashboards, and automated quality assessment
 
 ## ✨ Features
@@ -45,8 +45,8 @@ This project demonstrates a **comprehensive learning platform** for data observa
 
 - **Modern Data Stack**: DuckDB + Streamlit + Python 3.12+
 - **Professional Deployment**: Automated setup with zero-configuration
-- **Production Patterns**: Comprehensive error handling and logging
-- **Enterprise Architecture**: Modular design with clear separation of concerns
+- **Enterprise-style Patterns**: Comprehensive error handling and logging
+- **Scalable Architecture**: Modular design with clear separation of concerns
 
 ## 🚀 Quick Start
 
@@ -109,7 +109,7 @@ The setup script will:
          ▼                        ▼                       ▼
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
 │   OpenAI API    │    │  Monte Carlo     │    │   Sample Data   │
-│   Integration   │    │   SDK Client     │    │   (17 files)    │
+│   Integration   │    │   SDK Client     │    │   (20+ files)   │
 └─────────────────┘    └──────────────────┘    └─────────────────┘
 ```
 
@@ -149,7 +149,7 @@ The setup script will:
 - **Quality Metrics**: Enterprise-grade rule management
 - **Incident Management**: Alert configuration and resolution tracking
 - **Rule Management**: Custom quality rule creation and monitoring
-- **API Patterns**: Production-ready integration examples
+- **API Patterns**: Professional integration examples and patterns
 
 ## 🔧 Technical Implementation
 
@@ -163,9 +163,11 @@ monte-carlo-demo/
 │   ├── monte_carlo_client.py       # Core SDK client (700+ lines)
 │   ├── demo.py                     # Demo scenarios
 │   └── examples/                   # Integration examples
-├── sample_data/                    # 17 enterprise data scenarios
-├── database/                       # DuckDB analytics database
-├── tests/                          # Comprehensive test suite
+├── sample_data/                    # 20+ enterprise data scenarios
+├── scripts/                        # CI/CD and utility scripts
+├── tests/                          # Test suite
+├── docs/                           # Documentation and Jekyll site
+├── monte_carlo_dbt/               # dbt transformation models
 ├── setup.sh                       # Professional deployment automation
 ├── requirements.txt               # Dependency management
 ├── .env.example                   # Environment configuration template
@@ -255,8 +257,7 @@ pip install pytest pytest-cov
 pytest tests/ -v --cov=src/
 
 # Run specific test categories
-pytest tests/test_quality_metrics.py -v
-pytest tests/test_file_monitoring.py -v
+pytest tests/test_basic.py -v
 ```
 
 ### Code Quality
@@ -274,28 +275,26 @@ mypy src/
 
 ## 🚀 Deployment
 
-### Production Deployment
+### Demo Deployment
 
-#### Docker Deployment
-
-```bash
-# Build Docker image
-docker build -t monte-carlo-demo .
-
-# Run container
-docker run -p 8501:8501 monte-carlo-demo
-```
-
-#### Cloud Deployment (AWS/Azure/GCP)
+> **Note**: This is a demonstration platform showcasing professional data engineering patterns. It is designed for learning, testing, and demonstrating capabilities rather than production workloads.
 
 ```bash
-# Configure cloud environment variables
-export CLOUD_PROVIDER="aws"  # or "azure", "gcp"
-export DATABASE_URL="your-cloud-database-url"
-
-# Deploy using cloud-specific scripts
-./deploy/deploy-${CLOUD_PROVIDER}.sh
+# Current deployment supports local/development environments
+./setup.sh setup
+./setup.sh start
 ```
+
+### Future Production Considerations
+
+For actual production deployment, additional considerations would include:
+
+- Docker containerization for consistent deployment
+- Load balancing and horizontal scaling
+- Enhanced security hardening and authentication
+- Comprehensive monitoring and alerting
+- Database optimization for production workloads
+- Full test coverage and performance testing
 
 ### Environment Configuration
 
@@ -336,7 +335,9 @@ MONTE_CARLO_API_KEY=your-monte-carlo-key
 - **Environment Variable Management**: Secure credential handling
 - **Audit Logging**: Comprehensive activity tracking
 - **Data Encryption**: Secure data handling practices
-- **Access Controls**: Role-based permission patterns ready for implementation
+- **Access Controls**: Foundation for role-based permissions
+
+> **Note**: This demo implements security best practices suitable for development and demonstration environments. Production deployment would require additional security hardening and compliance measures.
 
 ## 🤝 Contributing
 
@@ -358,9 +359,7 @@ MONTE_CARLO_API_KEY=your-monte-carlo-key
 ## 📚 Documentation
 
 - **[Technical Presentation Guide](personal.md)** - Comprehensive demo and architecture guide
-- **[API Documentation](docs/api.md)** - Detailed API reference
-- **[Deployment Guide](docs/deployment.md)** - Production deployment instructions
-- **[Contributing Guide](docs/contributing.md)** - Development workflow and standards
+- **[Documentation Site](docs/)** - Jekyll-powered documentation website
 
 ## 🐛 Troubleshooting
 
@@ -413,4 +412,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 *Built with ❤️ for enterprise data engineering excellence*
 
-**Ready to demonstrate production-level data engineering capabilities!** 🚀
+**Ready to demonstrate professional-level data engineering capabilities!** 🚀

@@ -310,7 +310,7 @@ class ProductionMonteCarloClient:
             logger.info("🔗 Connected to production Monte Carlo")
             
         except ImportError:
-            logger.warning("pycarlo not installed - run: pip install pycarlo==0.10.51")
+            logger.warning("pycarlo not installed - run: pip install pycarlo")
             raise
         except Exception as e:
             logger.error(f"Failed to connect to Monte Carlo: {e}")
@@ -338,7 +338,7 @@ class ProductionMonteCarloClient:
             return {"error": str(e)}
             
         except ImportError:
-            logger.warning("pycarlo not installed - run: pip install pycarlo==0.10.51")
+            logger.warning("pycarlo not installed - run: pip install pycarlo")
             raise
         except Exception as e:
             logger.error(f"Failed to connect to Monte Carlo: {e}")

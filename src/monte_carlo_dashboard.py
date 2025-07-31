@@ -23,7 +23,7 @@ Learning Objectives:
 - Understanding data quality metrics and scoring algorithms
 - Enterprise SDK integration patterns and authentication
 - Real-time monitoring system architecture
-- Production-ready error handling and logging practices
+- Professional error handling and logging practices
 """
 
 import os
@@ -619,7 +619,7 @@ def show_ai_analysis(data_manager: DataManager, ai_analyzer: AIAnalyzer):
 def render_monte_carlo_sdk_tab():
     """Render the comprehensive Monte Carlo SDK integration tab"""
     st.header("🔗 Monte Carlo SDK Integration")
-    st.markdown("*Complete demonstration of production-ready pycarlo SDK capabilities*")
+    st.markdown("*Complete demonstration of professional pycarlo SDK capabilities*")
     
     try:
         # Initialize Monte Carlo client
@@ -659,7 +659,7 @@ export MONTE_CARLO_API_TOKEN="your-api-token"
 export MONTE_CARLO_DEMO_MODE=false
 
 # Or install pycarlo:
-pip install pycarlo==0.10.51
+pip install pycarlo
         """)
 
 def render_sdk_overview(client):
@@ -1123,7 +1123,7 @@ def quality_gate_check():
         
         1. **Install pycarlo SDK**
            ```bash
-           pip install pycarlo==0.10.51
+           pip install pycarlo
            ```
         
         2. **Configure Credentials**

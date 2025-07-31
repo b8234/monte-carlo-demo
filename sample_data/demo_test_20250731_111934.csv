@@ -1,0 +1,6 @@
+title,description
+Load Balancer Health Check,Weekly security vulnerability scan completed. Several medium-priority issues identified for remediation.
+Database Connection Timeout,Container orchestration system restarted failed pods. Root cause analysis scheduled for investigation.
+API Rate Limit Exceeded,Container orchestration system restarted failed pods. Root cause analysis scheduled for investigation.
+API Rate Limit Exceeded,"Cache invalidation process failed for user session data, potentially affecting user experience."
+Service Degradation Notice,Available disk space dropped below 15% on database servers. Archive and cleanup procedures started.

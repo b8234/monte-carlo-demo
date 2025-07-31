@@ -105,7 +105,7 @@ def demo_with_credentials():
         print("\n✅ All pycarlo API examples completed successfully!")
         
     except ImportError:
-        print("❌ pycarlo not installed. Install with: pip install pycarlo==0.10.51")
+        print("❌ pycarlo not installed. Install with: pip install pycarlo")
         print("💡 After installation, configure with: montecarlo configure")
         return False
         
@@ -373,7 +373,7 @@ def demo_without_credentials():
     
     print("\n✅ All demo API examples completed successfully!")
     print("\n💡 To use real pycarlo:")
-    print("   1. Install: pip install pycarlo==0.10.51")
+    print("   1. Install: pip install pycarlo")
     print("   2. Configure: montecarlo configure")
     print("   3. Run: python pycarlo_api_demo.py --production")
     

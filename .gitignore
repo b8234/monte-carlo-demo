@@ -46,3 +46,6 @@ dist/
 # Personal files (exclude from main branch only)
 # personal.md - commented out to allow in main-staging
 
+# Development scripts (staging branch only)
+scripts/branch-manager.sh
+

@@ -1,16 +1,17 @@
 # Monte Carlo Demo - Complete Requirements
 # Core functionality: Live dashboard, dbt, AI analysis, file monitoring + Monte Carlo SDK
-streamlit==1.47.1
-duckdb==1.3.2
-dbt-core==1.10.5
-dbt-duckdb==1.9.4
-openai==1.97.1
-python-dotenv==1.0.1
-pandas==2.3.1
-watchdog==6.0.0
-pytest==8.3.4
+streamlit
+duckdb
+dbt-core
+dbt-duckdb
+openai
+python-dotenv
+pandas
+watchdog
+pytest
 
 # Monte Carlo SDK Integration
-pycarlo==0.10.51
-PyYAML>=6.0
-requests>=2.31.0
+pycarlo
+PyYAML
+requests
+
