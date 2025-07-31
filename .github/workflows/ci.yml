@@ -41,7 +41,7 @@ jobs:
     
     - name: Validate configuration
       run: |
-        python config.py
+        python scripts/config.py
       env:
         OPENAI_API_KEY: dummy-key-for-testing
         OPENAI_ORGANIZATION: dummy-org
@@ -72,14 +72,14 @@ jobs:
           outputs:
             dev:
               type: duckdb
-              path: './monte-carlo.duckdb'
+              path: './database/monte-carlo.duckdb'
               threads: 4
         EOF
     
     - name: Load test data
       run: |
         pip install pandas duckdb
-        python load_csv.py
+        python scripts/load_csv.py
     
     - name: Run dbt
       run: |

@@ -332,7 +332,7 @@ if __name__ == "__main__":
     print("   • Different scopes enable different endpoint access")
     print("   • Our integration supports both patterns seamlessly")
     print("\n🚀 Production Setup:")
-    print("   1. pip install pycarlo==0.10.51")
+    print("   1. pip install pycarlo")
     print("   2. montecarlo configure")
     print("   3. Set appropriate scope for your use case")
     print("   4. Use make_request() for specialized endpoints")
