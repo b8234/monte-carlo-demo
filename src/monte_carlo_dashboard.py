@@ -265,7 +265,13 @@ class DataManager:
             total_records = con.execute("SELECT COUNT(*) FROM summarize_model").fetchone()[0]
             recent_records = con.execute("""
                 SELECT COUNT(*) FROM summarize_model 
-                WHERE id > (SELECT MAX(id) - 10 FROM summarize_model)
+                WHERE id IS NOT NULL AND id != 'None' AND id != '' 
+                  AND (id ~ '^[0-9]+$')
+                  AND CAST(id AS INTEGER) > (
+                      SELECT MAX(CAST(id AS INTEGER)) - 10 
+                      FROM summarize_model 
+                      WHERE id IS NOT NULL AND id != 'None' AND id != '' AND (id ~ '^[0-9]+$')
+                  )
             """).fetchone()[0]
             
             null_descriptions = con.execute("""
