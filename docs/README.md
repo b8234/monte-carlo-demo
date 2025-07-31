@@ -90,7 +90,7 @@ All content is in `index.html` with clear section markers for easy editing.
 ## Analytics
 
 To add Google Analytics:
-1. Update `_config.yml` with your tracking ID
+1. Update `docs/_config.yml` with your tracking ID
 2. Add the analytics script to `index.html`
 
 ## SEO
