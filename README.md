@@ -188,7 +188,7 @@ monte-carlo-demo/
 ├── setup.sh                       # Professional deployment automation
 ├── requirements.txt               # Dependency management
 ├── .env.example                   # Environment configuration template
-└── personal.md                    # Technical presentation guide
+
 ```
 
 ### Key Design Decisions
