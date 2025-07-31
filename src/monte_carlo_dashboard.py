@@ -104,7 +104,7 @@ class Config:
     
     @property
     def duckdb_path(self) -> str:
-        return os.getenv("DUCKDB_PATH", "database/monte-carlo.duckdb")
+        return os.getenv("DUCKDB_PATH", "monte_carlo_dbt/database/monte-carlo.duckdb")
     
     @property
     def log_level(self) -> str:

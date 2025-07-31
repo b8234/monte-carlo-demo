@@ -72,7 +72,7 @@ jobs:
           outputs:
             dev:
               type: duckdb
-              path: './database/monte-carlo.duckdb'
+              path: './monte_carlo_dbt/database/monte-carlo.duckdb'
               threads: 4
         EOF
 

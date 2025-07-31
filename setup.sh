@@ -160,7 +160,7 @@ setup_env() {
 # ==============================
 
 # Database Configuration
-DUCKDB_PATH=database/monte-carlo.duckdb
+DUCKDB_PATH=monte_carlo_dbt/database/monte-carlo.duckdb
 
 # Logging Configuration  
 LOG_LEVEL=INFO
@@ -212,11 +212,11 @@ print('✅ All required packages can be imported')
 "
     
     # Check database
-    if [ -f "database/monte-carlo.duckdb" ]; then
+    if [ -f "monte_carlo_dbt/database/monte-carlo.duckdb" ]; then
         print_status "Checking database..."
         python -c "
 import duckdb
-con = duckdb.connect('database/monte-carlo.duckdb')
+con = duckdb.connect('monte_carlo_dbt/database/monte-carlo.duckdb')
 tables = con.execute('SHOW TABLES').fetchall()
 record_count = con.execute('SELECT COUNT(*) FROM summarize_model').fetchone()[0] if tables else 0
 con.close()
@@ -276,9 +276,9 @@ clean_setup() {
         print_success "Virtual environment removed"
     fi
     
-    if [ -f "database/monte-carlo.duckdb" ]; then
+    if [ -f "monte_carlo_dbt/database/monte-carlo.duckdb" ]; then
         print_status "Removing database file..."
-        rm -f "database/monte-carlo.duckdb"
+        rm -f "monte_carlo_dbt/database/monte-carlo.duckdb"
         print_success "Database file removed"
     fi
     

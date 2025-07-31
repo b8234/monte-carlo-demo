@@ -14,7 +14,7 @@ Usage:
     python load_csv.py
     
 Environment:
-    - Creates database/monte-carlo.duckdb (or connects to existing)
+    - Creates monte_carlo_dbt/database/monte-carlo.duckdb (or connects to existing)
     - Loads all CSV files from data/ and sample_data/ directories
     - Creates unified 'raw_data' table for dbt models
 """
@@ -38,7 +38,7 @@ os.chdir(PROJECT_ROOT)
 class CSVLoader:
     """Loads CSV files into DuckDB for dbt testing"""
     
-    def __init__(self, db_path: str = "database/monte-carlo.duckdb"):
+    def __init__(self, db_path: str = "monte_carlo_dbt/database/monte-carlo.duckdb"):
         """Initialize the CSV loader with DuckDB connection"""
         self.db_path = db_path
         self.conn = duckdb.connect(db_path)

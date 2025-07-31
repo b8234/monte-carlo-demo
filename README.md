@@ -309,7 +309,7 @@ Required environment variables:
 
 ```bash
 # Database Configuration
-DUCKDB_PATH=database/monte-carlo.duckdb
+DUCKDB_PATH=monte_carlo_dbt/database/monte-carlo.duckdb
 
 # Optional: OpenAI Integration
 OPENAI_API_KEY=your-api-key-here
