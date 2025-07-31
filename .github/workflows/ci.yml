@@ -66,29 +66,36 @@ jobs:
     - name: Set up dbt profile
       run: |
         mkdir -p ~/.dbt
-        cat > ~/.dbt/profiles.yml << 'EOF'
+        cat > ~/.dbt/profiles.yml << EOF
         monte_carlo_dbt:
           target: dev
           outputs:
             dev:
               type: duckdb
-              path: './monte_carlo_dbt/database/monte-carlo.duckdb'
+              path: '${{ github.workspace }}/monte_carlo_dbt/database/monte-carlo.duckdb'
               threads: 4
         EOF
 
     - name: Create DuckDB database file if missing
       run: |
         mkdir -p monte_carlo_dbt/database
-        python -c "import duckdb; duckdb.connect('monte_carlo_dbt/database/monte-carlo.duckdb').close()"
+        python -c "import duckdb; duckdb.connect('${{ github.workspace }}/monte_carlo_dbt/database/monte-carlo.duckdb').close()"
 
     - name: Load test data
       run: |
         pip install pandas duckdb
         python scripts/load_csv.py
+      env:
+        DUCKDB_PATH: ${{ github.workspace }}/monte_carlo_dbt/database/monte-carlo.duckdb
 
     # Add this step here
-    - name: List database directory contents
-      run: ls -l monte_carlo_dbt/database/
+    - name: Debug paths and list database directory contents
+      run: |
+        echo "GitHub workspace: ${{ github.workspace }}"
+        echo "Current directory: $(pwd)"
+        echo "Database path will be: ${{ github.workspace }}/monte_carlo_dbt/database/monte-carlo.duckdb"
+        ls -la monte_carlo_dbt/database/ || echo "Database directory not found"
+        cat ~/.dbt/profiles.yml
     
     - name: Run dbt
       run: |
