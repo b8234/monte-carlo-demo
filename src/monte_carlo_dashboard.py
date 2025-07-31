@@ -491,7 +491,7 @@ def show_live_monitoring(data_manager: DataManager, live_monitor: LiveMonitor, a
     col1, col2, col3 = st.columns([2, 1, 1])
     
     with col1:
-        auto_refresh = st.checkbox("🔄 Auto-refresh (10 seconds)", value=False)
+        auto_refresh = st.checkbox("🔄 Auto-refresh (10 seconds)", value=False, key="live_monitor_auto_refresh")
     
     with col2:
         if st.button("📊 Refresh Now"):
@@ -522,9 +522,9 @@ def show_live_monitoring(data_manager: DataManager, live_monitor: LiveMonitor, a
     # Description analysis options
     col1, col2 = st.columns([3, 1])
     with col1:
-        show_descriptions = st.checkbox("📝 Show Full Descriptions", value=False)
+        show_descriptions = st.checkbox("📝 Show Full Descriptions", value=False, key="live_monitor_show_descriptions")
     with col2:
-        analyze_live = st.checkbox("🤖 Live AI Analysis", value=False)
+        analyze_live = st.checkbox("🤖 Live AI Analysis", value=False, key="live_monitor_ai_analysis")
     
     try:
         con = data_manager.get_connection()
@@ -570,18 +570,70 @@ def show_live_monitoring(data_manager: DataManager, live_monitor: LiveMonitor, a
             # Description quality distribution
             if len(recent_data) > 0:
                 st.subheader("📊 Description Quality Distribution")
+                
+                # Add help section with quality criteria
+                with st.expander("ℹ️ Quality Status Guide", expanded=False):
+                    st.markdown("""
+                    **Quality Status Criteria & Business Impact:**
+                    
+                    **✅ Good Quality** (10-200 characters)
+                    - *Why it matters:* Provides sufficient context for debugging, monitoring, and compliance
+                    - *Business impact:* Enables faster incident resolution and better data governance
+                    - *Quality score:* 90 points
+                    
+                    **⚠️ Short Descriptions** (< 10 characters)
+                    - *Why it matters:* Insufficient detail hampers troubleshooting and audit trails
+                    - *Business impact:* Increases mean time to resolution (MTTR) during incidents
+                    - *Quality score:* 30 points
+                    
+                    **⚠️ Long Descriptions** (> 200 characters)
+                    - *Why it matters:* Excessively verbose content reduces readability and dashboard performance
+                    - *Business impact:* Information overload slows down issue analysis and decision-making
+                    - *Quality score:* 85 points
+                    
+                    **🚨 NULL Descriptions** (Missing/empty)
+                    - *Why it matters:* Complete lack of context creates data lineage blind spots
+                    - *Business impact:* Regulatory compliance risks and operational inefficiency
+                    - *Quality score:* 0 points
+                    
+                    *Based on data observability best practices*
+                    """)
+                
                 quality_counts = recent_data['Quality Status'].value_counts()
-                col1, col2, col3 = st.columns(3)
+                col1, col2, col3, col4 = st.columns(4)
                 
                 with col1:
                     good_count = quality_counts.get('✅ GOOD', 0)
-                    st.metric("✅ Good Quality", good_count, f"{good_count/len(recent_data)*100:.1f}%")
+                    st.metric(
+                        "✅ Good Quality", 
+                        good_count, 
+                        f"{good_count/len(recent_data)*100:.1f}%",
+                        help="Records with optimal description length (10-200 chars) → Faster incident resolution & better compliance"
+                    )
                 with col2:
                     short_count = quality_counts.get('⚠️ SHORT', 0)
-                    st.metric("⚠️ Short Descriptions", short_count, f"{short_count/len(recent_data)*100:.1f}%")
+                    st.metric(
+                        "⚠️ Short Descriptions", 
+                        short_count, 
+                        f"{short_count/len(recent_data)*100:.1f}%",
+                        help="Records lacking context (< 10 chars) → Increases troubleshooting time & operational risk"
+                    )
                 with col3:
+                    long_count = quality_counts.get('⚠️ LONG', 0)
+                    st.metric(
+                        "⚠️ Long Descriptions", 
+                        long_count, 
+                        f"{long_count/len(recent_data)*100:.1f}%",
+                        help="Overly verbose descriptions (> 200 chars) → Information overload slows analysis"
+                    )
+                with col4:
                     null_count = quality_counts.get('🚨 NULL', 0)
-                    st.metric("🚨 NULL Descriptions", null_count, f"{null_count/len(recent_data)*100:.1f}%")
+                    st.metric(
+                        "🚨 NULL Descriptions", 
+                        null_count, 
+                        f"{null_count/len(recent_data)*100:.1f}%",
+                        help="Missing descriptions → Data lineage blind spots & compliance risks"
+                    )
         else:
             st.info("No records found")
         
@@ -916,8 +968,8 @@ def render_rule_management_section(client):
         
         # Advanced options
         with st.expander("Advanced Options"):
-            alert_on_failure = st.checkbox("Send Alert on Failure", value=True)
-            auto_resolve = st.checkbox("Auto-resolve when fixed", value=False)
+            alert_on_failure = st.checkbox("Send Alert on Failure", value=True, key="rule_alert_on_failure")
+            auto_resolve = st.checkbox("Auto-resolve when fixed", value=False, key="rule_auto_resolve")
             schedule = st.selectbox("Check Frequency", ["Every 15 min", "Hourly", "Daily", "On data change"])
     
     if st.button("🚀 Create Quality Rule", type="primary"):
@@ -1186,15 +1238,142 @@ def main():
         st.subheader("📊 Database Overview")
         stats = data_manager.get_live_stats()
         if stats:
+            # Main metrics row
             col1, col2, col3, col4 = st.columns(4)
             with col1:
                 st.metric("Total Records", stats['total_records'])
             with col2:
                 st.metric("Quality Score", f"{stats['quality_score']:.1f}%")
             with col3:
-                st.metric("Issues", stats['null_descriptions'] + stats['short_descriptions'])
+                total_issues = stats['null_descriptions'] + stats['short_descriptions']
+                st.metric("Issues", total_issues, 
+                         help=f"NULL descriptions: {stats['null_descriptions']}, Short descriptions: {stats['short_descriptions']}")
             with col4:
                 st.metric("Data Freshness", "Real-time")
+            
+            # Issue breakdown section
+            if total_issues > 0:
+                st.subheader("🔍 Issue Breakdown")
+                issue_col1, issue_col2 = st.columns(2)
+                
+                with issue_col1:
+                    st.metric("🚨 NULL Descriptions", stats['null_descriptions'], 
+                             help="Records with missing or empty descriptions")
+                with issue_col2:
+                    st.metric("⚠️ Short Descriptions", stats['short_descriptions'], 
+                             help="Records with descriptions under 10 characters")
+                
+                # Show problematic records
+                try:
+                    con = data_manager.get_connection()
+                    
+                    # Get NULL description records
+                    if stats['null_descriptions'] > 0:
+                        st.subheader("🚨 Records with NULL Descriptions")
+                        null_records = con.execute("""
+                            SELECT id, title, description, description_length
+                            FROM summarize_model 
+                            WHERE description IS NULL OR description = ''
+                            ORDER BY id DESC
+                        """).fetchdf()
+                        if not null_records.empty:
+                            st.dataframe(null_records, use_container_width=True)
+                    
+                    # Get short description records
+                    if stats['short_descriptions'] > 0:
+                        st.subheader("⚠️ Records with Short Descriptions")
+                        short_records = con.execute("""
+                            SELECT id, title, description, description_length
+                            FROM summarize_model 
+                            WHERE description_length < 10 AND description IS NOT NULL
+                            ORDER BY id DESC
+                        """).fetchdf()
+                        if not short_records.empty:
+                            st.dataframe(short_records, use_container_width=True)
+                    
+                    con.close()
+                except Exception as e:
+                    st.error(f"Error loading issue details: {e}")
+            else:
+                st.success("✅ No data quality issues detected!")
+            
+            # Data viewer section
+            st.subheader("📋 Data Records Viewer")
+            
+            # Options for viewing data
+            view_option = st.radio(
+                "Choose data view:",
+                ["All Records", "Recent Records (Last 10)", "Good Quality Only", "Issues Only"],
+                horizontal=True
+            )
+            
+            # Show descriptions toggle
+            show_full_descriptions = st.checkbox("📝 Show Full Descriptions", value=False, key="data_overview_show_descriptions")
+            
+            try:
+                con = data_manager.get_connection()
+                
+                # Build query based on selection
+                if view_option == "All Records":
+                    query = "SELECT id, title, description, description_length FROM summarize_model ORDER BY id DESC"
+                elif view_option == "Recent Records (Last 10)":
+                    query = "SELECT id, title, description, description_length FROM summarize_model ORDER BY id DESC LIMIT 10"
+                elif view_option == "Good Quality Only":
+                    query = """
+                        SELECT id, title, description, description_length 
+                        FROM summarize_model 
+                        WHERE description IS NOT NULL 
+                          AND description != '' 
+                          AND description_length >= 10 
+                          AND description_length <= 200
+                        ORDER BY id DESC
+                    """
+                else:  # Issues Only
+                    query = """
+                        SELECT id, title, description, description_length 
+                        FROM summarize_model 
+                        WHERE (description IS NULL OR description = '' OR description_length < 10)
+                        ORDER BY id DESC
+                    """
+                
+                records = con.execute(query).fetchdf()
+                
+                if not records.empty:
+                    # Add quality status for context
+                    records['Quality Status'] = records.apply(lambda row: 
+                        "🚨 NULL" if pd.isna(row['description']) or row['description'] == '' 
+                        else "⚠️ SHORT" if row['description_length'] < 10 
+                        else "⚠️ LONG" if row['description_length'] > 200
+                        else "✅ GOOD", axis=1)
+                    
+                    # Prepare display columns
+                    display_cols = ['id', 'title', 'Quality Status', 'description_length']
+                    if show_full_descriptions:
+                        display_cols.append('description')
+                    
+                    st.write(f"**Showing {len(records)} records**")
+                    st.dataframe(records[display_cols], use_container_width=True)
+                    
+                    # Summary statistics for current view
+                    with st.expander("📊 View Statistics"):
+                        quality_counts = records['Quality Status'].value_counts()
+                        stat_col1, stat_col2, stat_col3 = st.columns(3)
+                        
+                        with stat_col1:
+                            good_count = quality_counts.get('✅ GOOD', 0)
+                            st.metric("Good Quality", good_count, f"{good_count/len(records)*100:.1f}%")
+                        with stat_col2:
+                            short_count = quality_counts.get('⚠️ SHORT', 0)
+                            st.metric("Short Descriptions", short_count, f"{short_count/len(records)*100:.1f}%")
+                        with stat_col3:
+                            null_count = quality_counts.get('🚨 NULL', 0)
+                            st.metric("NULL Descriptions", null_count, f"{null_count/len(records)*100:.1f}%")
+                else:
+                    st.info(f"No records found for '{view_option}' view")
+                
+                con.close()
+            except Exception as e:
+                st.error(f"Error loading records: {e}")
     
     # Add Monte Carlo SDK tab if available
     if MONTE_CARLO_SDK_AVAILABLE:
